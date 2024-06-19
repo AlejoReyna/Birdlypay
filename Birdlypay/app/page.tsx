@@ -2,55 +2,27 @@
 
 import Image from "next/image";
 import { Button } from "@/components/ui/button"
-
-import { thirdwebClient } from "../utils/thirdweb";
-
-import {
-  ThirdwebProvider,
-  ConnectButton,
-} from "thirdweb/react";
-
-import {
-  createWallet,
-  walletConnect,
-  inAppWallet,
-} from "thirdweb/wallets";
-
-const wallets = [
-  createWallet("io.metamask"),
-  createWallet("com.coinbase.wallet"),
-  walletConnect(),
-  inAppWallet({
-    auth: {
-      options: [
-        "email",
-        "google",
-        "apple",
-        "facebook",
-        "phone",
-      ],
-    },
-  }),
-];
-
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
+
+  const router = useRouter();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      router.push('/login'); // Redirect to the login page after 3 seconds
+    }, 4000);
+    return () => clearTimeout(timer); // Cleanup timer on component unmount
+  }, [router]);
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Button>Click me</Button>
-
-      <ConnectButton
-        client={thirdwebClient}
-        wallets={wallets}
-        theme={"light"}
-        connectModal={{
-          size: "compact",
-          title: "Birdlypay",
-          titleIcon:
-            "https://bafybeidc63fbknjzs5aiedihq5v4rvh6reugfvwflw2wt5booom7dixj2u.ipfs.w3s.link/Birdlypay.png",
-        }}
-      />
-
-    </main>
+  <div className="flex items-center justify-center h-screen bg-gradient-to-r from-[#b6f8e2] via-[#d1f7e6] to-[#70f7c9]">
+      <Image src="/launch.gif" alt="Loading..." 
+        width={0}
+        height={0}
+        sizes="100vw"
+        style={{ width: 'auto', height: '80%' }} />
+  </div>
   );
 }
