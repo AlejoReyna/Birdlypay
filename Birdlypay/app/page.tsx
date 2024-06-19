@@ -11,7 +11,7 @@ export default function Home() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      router.push('/login'); // Redirect to the login page after 3 seconds
+      router.push('/home'); // Redirect to the login page after 3 seconds
     }, 4000);
     return () => clearTimeout(timer); // Cleanup timer on component unmount
   }, [router]);
