@@ -47,6 +47,9 @@ export default function LoginScreenComponent() {
             height={0}
             sizes="100vw"
             style={{ width: '100%', height: 'auto', marginBottom: '25px'}} />
+
+       
+                  
   
           <ConnectButton
             client={thirdwebClient}

@@ -19,10 +19,9 @@ export default function Home() {
   return (
   <div className="flex items-center justify-center h-screen bg-gradient-to-r from-[#b6f8e2] via-[#d1f7e6] to-[#70f7c9]">
       <Image src="/launch.gif" alt="Loading..." 
-        width={0}
-        height={0}
-        sizes="100vw"
-        style={{ width: 'auto', height: '80%' }} />
+        fill
+        className="object-cover" 
+        priority />
   </div>
   );
 }
