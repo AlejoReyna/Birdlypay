@@ -10,6 +10,8 @@ import {
   ConnectButton,
 } from "thirdweb/react";
 
+import { baseSepolia, defineChain } from "thirdweb/chains";
+
 import {
   createWallet,
   walletConnect,
@@ -18,8 +20,11 @@ import {
 
 const wallets = [
   createWallet("io.metamask"),
-  createWallet("com.coinbase.wallet"),
-  walletConnect(),
+  createWallet("com.coinbase.wallet", {
+    walletConfig: {
+      options: "smartWalletOnly",
+    },    
+  }),
   inAppWallet({
     auth: {
       options: [
@@ -55,6 +60,7 @@ export default function LoginScreenComponent() {
                 "https://bafybeidc63fbknjzs5aiedihq5v4rvh6reugfvwflw2wt5booom7dixj2u.ipfs.w3s.link/Birdlypay.png",
               showThirdwebBranding: false,
             }}
+            chain={defineChain(baseSepolia)}
           />        
         </div>
       </main>
