@@ -6,6 +6,8 @@ import Link from "next/link";
 import { NavigationMenuLink, NavigationMenuItem, NavigationMenuList, NavigationMenu } from "@/components/ui/navigation-menu";
 import { DropdownMenuTrigger, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuContent, DropdownMenu } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
+import { useRouter } from 'next/navigation';
+
 
 import { thirdwebClient } from "../utils/thirdweb";
 
@@ -21,6 +23,13 @@ export default function HeaderComponent() {
 
   const { connect, isConnecting, error } = useConnect();
   const wallets = useConnectedWallets();
+  const router = useRouter();
+
+  const handleDisconnect = () => {
+    // Handle the disconnect event here
+    console.log("Wallet disconnected");
+    router.push('/'); // Redirect to the login page after 3 seconds
+  };  
 
   return (
     <header className="sticky top-0 z-50 flex items-center justify-between m-4 px-8 py-4 rounded-3xl shadow-xl border-1 border-black">
@@ -134,6 +143,7 @@ export default function HeaderComponent() {
                   "https://bafybeidc63fbknjzs5aiedihq5v4rvh6reugfvwflw2wt5booom7dixj2u.ipfs.w3s.link/Birdlypay.png",
                 showThirdwebBranding: false,
               }}
+              onDisconnect={handleDisconnect}
             />
     </div>
 
