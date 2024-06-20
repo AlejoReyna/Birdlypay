@@ -1,5 +1,6 @@
 "use client";
 
+import './css/LoginScreen.css';
 import Image from "next/image";
 import { Button } from "@/components/ui/button"
 
@@ -42,29 +43,33 @@ export default function LoginScreenComponent() {
     return (
         <main className="flex items-center justify-center h-screen p-8">
         <div className="space-y-4 text-center">
-          <Image src="/logo.png" alt="Birdlypay"
-            width={0}
-            height={0}
-            sizes="100vw"
-            style={{ width: '100%', height: 'auto', marginBottom: '25px'}} />
 
-       
-                  
-  
-          <ConnectButton
-            client={thirdwebClient}
-            wallets={wallets}
-            theme={"light"}
-            connectButton={{ label: "Start" }}
-            connectModal={{
-              size: "compact",
-              title: "Birdlypay",
-              titleIcon:
-                "https://bafybeidc63fbknjzs5aiedihq5v4rvh6reugfvwflw2wt5booom7dixj2u.ipfs.w3s.link/Birdlypay.png",
-              showThirdwebBranding: false,
-            }}
-            chain={defineChain(baseSepolia)}
+          <div className='logo-container'>
+            <Image src="/logo.png" alt="Birdlypay"
+              width={0}
+              height={0}
+              sizes="100vw"
+              style={{ width: '100%', height: 'auto', marginBottom: '25px'}} />
+        
+        
+                    
+    
+            <ConnectButton
+              client={thirdwebClient}
+              wallets={wallets}
+              theme={"light"}
+              connectButton={{ label: "Start paying!" }}
+              connectModal={{
+                size: "compact",
+                title: "Birdlypay",
+                titleIcon:
+                  "https://bafybeidc63fbknjzs5aiedihq5v4rvh6reugfvwflw2wt5booom7dixj2u.ipfs.w3s.link/Birdlypay.png",
+                showThirdwebBranding: false,
+              }}
+              
+              chain={defineChain(baseSepolia)}
           />        
+          </div>
         </div>
       </main>
     )  
