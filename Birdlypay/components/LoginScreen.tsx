@@ -1,5 +1,14 @@
 "use client";
+import TypewriterEffect from './TypewriterEffect';
+// List of icons:
+import emailIcon from './email-icon.png';
+import googleIcon from './google-icon.png';
+import appleIcon from './apple-icon.png';
+import fbIcon from './fb-icon.png';
+import phoneIcon from './phone-icon.png';
+import walletIcon from './wallet-icon.png';
 
+import './LoginScreen.css';
 import Image from "next/image";
 import { Button } from "@/components/ui/button"
 
@@ -152,13 +161,20 @@ export default function LoginScreenComponent() {
   };
 
     return (
-        <main className="flex items-center justify-center h-screen p-8">
+        <main className="flex items-center bg-blue justify-center h-screen p-8">
         <div className="space-y-4 text-center">
+          <div className='logo-container'>
           <Image src="/logo.png" alt="Birdlypay"
+            className='birdlyLogo'
             width={0}
             height={0}
             sizes="100vw"
-            style={{ width: '100%', height: 'auto', marginBottom: '25px'}} />
+            style={{ width: '60%', height: 'auto', marginBottom: '25px'}} />
+          </div>
+
+            <div className='ad-text'>
+                        <TypewriterEffect text="Use crypto. Your payroll, all in crypto." delay={50} />
+            </div>
   
           {/* <ConnectButton
             client={thirdwebClient}
@@ -174,23 +190,47 @@ export default function LoginScreenComponent() {
             }}
             chain={defineChain(baseSepolia)}
           />    */}
+        <div className='row socials-login'>
+          <Button className='loginBtn' onClick={handleGoogleLogin}> 
+            <Image className="loginImg" src={googleIcon} alt="Google icon"/>
+            </Button><br/>
 
-          <Button onClick={handleGoogleLogin}>Log In with Google</Button><br/>
+          <Button className='loginBtn' onClick={handleFacebookLogin}>
+            <Image className='loginImg' src={fbIcon} alt="Facebook icon"/>
+            </Button><br/>
 
-          <Button onClick={handleFacebookLogin}>Log In with Facebook</Button><br/>
+          <Button className='loginBtn' onClick={handleAppleLogin}>
+          <Image className='loginImg' src={appleIcon} alt="Apple icon"/>
+          </Button><br/>
+        </div>
+          
+        
+          <Button className='loginBtn fixedWidth' onClick={handleContinueWithEmail}> 
+            <Image className="loginImg"src={emailIcon} alt="Email icon"/> 
+            Continue with Email
+          </Button>
+          <br/>
 
-          <Button onClick={handleAppleLogin}>Log In with Apple</Button><br/>
-
-          <Button onClick={handleContinueWithEmail}>Continue With Email</Button><br/>
-
-          <Button onClick={handleContinueWithPhone}>Continue With Phone</Button><br/>
-
-          <ConnectButton 
-            client={thirdwebClient} 
-            wallets={wallets} 
-            theme={"light"}
-            connectModal={{ size: "compact" }}
-            connectButton={{ label: "Log In with Wallet" }} />
+          <Button className='loginBtn fixedWidth' onClick={handleContinueWithPhone}>
+            <Image className="loginImg" src={phoneIcon} alt="Phone icon"/>Continue With Phone</Button><br/>
+          
+          <div className='specialBtn fixedWidth'>
+            <ConnectButton 
+              client={thirdwebClient} 
+              wallets={wallets} 
+              theme={"light"}
+              connectModal={{ size: "compact" }}
+              connectButton={{ 
+                label: (
+                  <>
+                  <Image src={walletIcon}
+                   alt='Wallet icon'
+                   className="loginImg"/>
+                    Log In with Wallet
+                  </>
+                ) }} 
+            />
+          </div>
 
         </div>
       </main>
