@@ -40,7 +40,7 @@ const wallets = [
 
 export default function LoginScreenComponent() {
     return (
-        <main className="flex items-center justify-center h-screen p-8 bg-gradient-to-r from-[#b6f8e2] via-[#d1f7e6] to-[#70f7c9]">
+        <main className="flex items-center justify-center h-screen p-8">
         <div className="space-y-4 text-center">
           <Image src="/logo.png" alt="Birdlypay"
             width={0}
