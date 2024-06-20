@@ -17,7 +17,7 @@ export default function Home() {
   }, [router]);
 
   return (
-  <div className="flex items-center justify-center h-screen bg-gradient-to-r from-[#b6f8e2] via-[#d1f7e6] to-[#70f7c9]">
+  <div className="flex items-center justify-center h-screen bg-dark">
       <Image src="/launch.gif" alt="Loading..." 
         fill
         className="object-cover" 
