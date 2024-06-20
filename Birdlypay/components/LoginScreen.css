@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Actor&display=swap');
+
+.bg-blue {
+    background: linear-gradient(to bottom right, #0D4FE1, #0B3B9F, #092A73);
+}
+
+.loginBtn {
+    color: #0D4FE1;
+    background-color: white;
+
+}
+
+.fixedWidth {
+    width: 20rem;
+}
+
+.loginImg {
+    width: 25px;
+    margin-right: 10px;
+}
+
+.specialBtn button {
+    background-color: white;
+    color: #0D4FE1;
+    width: 20rem;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+
+}
+.row.socials-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+.socials-login .loginBtn {
+
+    width: 6.2rem;
+}
+.ad-text {
+    text-align: start;
+    font-family: "Actor", sans-serif;
+    color: white;
+}
+
+.ad-text h6 {
+    font-size: 25px;
+}
+
+.ad-text h3 {
+    font-size: 30px;
+}
+
+
+.logo-container {
+    position: absolute;
+    top: 20px; /* Ajusta este valor para cambiar la distancia desde la parte superior */
+    left: 50%;
+    transform: translateX(30%); /* Centra el contenedor horizontalmente */
+  }
+
