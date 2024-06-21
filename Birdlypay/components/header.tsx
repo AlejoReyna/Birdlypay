@@ -1,5 +1,7 @@
 "use client"
 
+import './header.css';
+
 import { Button } from "@/components/ui/button";
 import { SheetTrigger, SheetContent, Sheet } from "@/components/ui/sheet";
 import Link from "next/link";
@@ -33,7 +35,7 @@ export default function HeaderComponent() {
   };  
 
   return (
-    <header className="sticky top-0 z-50 flex items-center justify-between  px-8 py-4 rounded-3xl shadow-xl border-1 border-black">
+    <header className="sticky bg-white top-0 z-50 flex items-center justify-between px-8 py-4 rounded-2xl shadow-xl border-1 border-black">
 
     <Sheet>
       <SheetTrigger asChild>

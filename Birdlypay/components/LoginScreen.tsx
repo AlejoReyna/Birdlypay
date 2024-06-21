@@ -161,19 +161,20 @@ export default function LoginScreenComponent() {
   };
 
     return (
-        <main className="flex items-center bg-blue justify-center h-screen p-8">
-        <div className="space-y-4 text-center">
-          <div className='logo-container'>
+        <main className="flex items-center justify-center h-screen p-8">
+        <div className="container-fluid space-y-4 text-center ">
+        <div className='container'>
           <Image src="/logo.png" alt="Birdlypay"
             className='birdlyLogo'
             width={0}
             height={0}
             sizes="100vw"
             style={{ width: '60%', height: 'auto', marginBottom: '25px'}} />
-          </div>
-
+         
+             
+            
             <div className='ad-text'>
-                        <TypewriterEffect text="Use crypto. Your payroll, all in crypto." delay={50} />
+              <TypewriterEffect text="Welcome, start here!." delay={50} />
             </div>
   
           {/* <ConnectButton
@@ -230,6 +231,7 @@ export default function LoginScreenComponent() {
                   </>
                 ) }} 
             />
+          </div>
           </div>
 
         </div>

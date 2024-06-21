@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Actor&display=swap');
 
-.bg-blue {
-    background: linear-gradient(to bottom right, #0D4FE1, #0B3B9F, #092A73);
+.container {
+    background-image: url("./new-bg.png");
 }
 
 .loginBtn {
