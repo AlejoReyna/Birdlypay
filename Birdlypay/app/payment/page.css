@@ -1,0 +1,34 @@
+
+
+
+.white-background {
+    background-color: white;
+}
+.actor-font {
+    font-family: "Actor", sans-serif;
+}
+.bg-black {
+    background: linear-gradient(to right, #1E1E1E, #222222);
+}
+
+.btn-container {
+    margin-right: 10px;
+}
+
+.small-card {
+    text-align: center;
+    padding: 10px;
+    font-family: "Actor", sans-serif;
+}
+.row-title {
+    font-family: "Actor", sans-serif;
+    margin-left: 20px;
+    font-size: 25px;
+}
+
+.btn-green {
+    background: #24F129;
+}
+.value-card {
+    padding: 3rem 6rem;
+}
