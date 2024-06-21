@@ -33,7 +33,7 @@ export default function HeaderComponent() {
   };  
 
   return (
-    <header className="sticky top-0 z-50 flex items-center justify-between m-4 px-8 py-4 rounded-3xl shadow-xl border-1 border-black">
+    <header className="sticky top-0 z-50 flex items-center justify-between  px-8 py-4 rounded-3xl shadow-xl border-1 border-black">
 
     <Sheet>
       <SheetTrigger asChild>

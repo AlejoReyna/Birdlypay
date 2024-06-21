@@ -1,5 +1,7 @@
 "use client";
 
+import './page.css';
+
 import { useConnect,  } from "thirdweb/react";
 import { useConnectedWallets } from "thirdweb/react";
 
@@ -47,14 +49,15 @@ export default function Home() {
   console.log("wallets", wallets);
 
   return (
-    <>
+    <div className='container-fluid bg-blue full-height '>
+   
       { !(wallets.length>0) && (
         <LoginScreenComponent />
       )}
       { (wallets.length>0) && (
         <HeaderComponent />
       ) }
-
-    </>
+ 
+    </div>
   );
 }

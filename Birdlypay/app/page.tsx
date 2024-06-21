@@ -18,10 +18,7 @@ export default function Home() {
 
   return (
   <div className="flex items-center justify-center h-screen bg-dark">
-      <Image src="/launch.gif" alt="Loading..." 
-        fill
-        className="object-cover" 
-        priority />
+     
   </div>
   );
 }
