@@ -161,36 +161,26 @@ export default function LoginScreenComponent() {
   };
 
     return (
-        <main className="flex items-center justify-center h-screen p-8">
-        <div className="container-fluid space-y-4 text-center ">
-        <div className='container'>
-          <Image src="/logo.png" alt="Birdlypay"
-            className='birdlyLogo'
-            width={0}
-            height={0}
-            sizes="100vw"
-            style={{ width: '60%', height: 'auto', marginBottom: '25px'}} />
-         
-             
-            
-            <div className='ad-text'>
-              <TypewriterEffect text="Welcome, start here!." delay={50} />
+        <main className="bg-gif flex items-center justify-center h-screen p-8">
+         <div className="login-menu bg-new p-8 text-center rounded ">
+
+            <div className='logo-container flex justify-center'>
+              <Image 
+                src="/logo.png"
+                alt="Birdlypay"
+                className='birdlyLogo'
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{ width: '60%', height: 'auto'}} 
+              />
             </div>
-  
-          {/* <ConnectButton
-            client={thirdwebClient}
-            wallets={wallets}
-            theme={"light"}
-            connectButton={{ label: "Start" }}
-            connectModal={{
-              size: "compact",
-              title: "Birdlypay",
-              titleIcon:
-                "https://bafybeidc63fbknjzs5aiedihq5v4rvh6reugfvwflw2wt5booom7dixj2u.ipfs.w3s.link/Birdlypay.png",
-              showThirdwebBranding: false,
-            }}
-            chain={defineChain(baseSepolia)}
-          />    */}
+              
+            <div className='ad-text flex justify-center'>
+              <TypewriterEffect text="Welcome, start here!" delay={50} />
+            </div>
+
+      <div className='menu space-y-4'>
         <div className='row socials-login'>
           <Button className='loginBtn' onClick={handleGoogleLogin}> 
             <Image className="loginImg" src={googleIcon} alt="Google icon"/>
@@ -232,7 +222,7 @@ export default function LoginScreenComponent() {
                 ) }} 
             />
           </div>
-          </div>
+        </div>
 
         </div>
       </main>

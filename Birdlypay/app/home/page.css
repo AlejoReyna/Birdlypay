@@ -1,14 +1,25 @@
 
 
-
 .white-background {
     background-color: white;
 }
 .actor-font {
     font-family: "Actor", sans-serif;
 }
+
+.bg-gif {
+    background-image: url("./background.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .bg-black {
     background: linear-gradient(to right, #1E1E1E, #222222);
+}
+.bg-new {
+    background-image: url("./new-bg.png");
+    background-size: cover;
+    background-position: center;
 }
 
 .btn-container {

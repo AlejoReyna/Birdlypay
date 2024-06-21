@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Actor&display=swap');
 
-.container {
-    background-image: url("./new-bg.png");
-}
 
 .loginBtn {
     color: #0D4FE1;
@@ -10,6 +7,9 @@
 
 }
 
+.menu {
+    height: 60vh;
+}
 .fixedWidth {
     width: 20rem;
 }
@@ -35,9 +35,9 @@
     gap: 5px;
   }
 .socials-login .loginBtn {
-
     width: 6.2rem;
 }
+
 .ad-text {
     text-align: start;
     font-family: "Actor", sans-serif;
@@ -53,10 +53,4 @@
 }
 
 
-.logo-container {
-    position: absolute;
-    top: 20px; /* Ajusta este valor para cambiar la distancia desde la parte superior */
-    left: 50%;
-    transform: translateX(30%); /* Centra el contenedor horizontalmente */
-  }
 
