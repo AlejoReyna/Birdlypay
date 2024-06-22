@@ -1,4 +1,5 @@
 "use client";
+
 import TypewriterEffect from './TypewriterEffect';
 // List of icons:
 import emailIcon from './email-icon.png';
@@ -7,6 +8,7 @@ import appleIcon from './apple-icon.png';
 import fbIcon from './fb-icon.png';
 import phoneIcon from './phone-icon.png';
 import walletIcon from './wallet-icon.png';
+import baseIcon from './baseIcon.png';
 
 import './LoginScreen.css';
 import Image from "next/image";
@@ -20,6 +22,7 @@ import {
 } from "thirdweb/react";
 
 import { baseSepolia, defineChain } from "thirdweb/chains";
+
 
 import {
   createWallet,
@@ -53,6 +56,20 @@ const wallets = [
 export default function LoginScreenComponent() {
 
   const { connect } = useConnect();
+  const handleCoinbaseLogin = async () => {
+    await connect(async () => {
+      const wallet = createWallet("com.coinbase.wallet", {
+        walletConfig: {
+          options: "smartWalletOnly",
+        },
+      });
+      await wallet.connect({
+        client: thirdwebClient,
+        chain: defineChain(baseSepolia),
+      });
+      return wallet;
+    });
+  };
 
   const handleGoogleLogin = async () => {
     await connect(async () => {
@@ -77,6 +94,8 @@ export default function LoginScreenComponent() {
       return wallet;
     });
   };
+
+  
 
   const handleAppleLogin = async () => {
     await connect(async () => {
@@ -181,19 +200,7 @@ export default function LoginScreenComponent() {
             </div>
 
       <div className='menu space-y-4'>
-        <div className='row socials-login'>
-          <Button className='loginBtn' onClick={handleGoogleLogin}> 
-            <Image className="loginImg" src={googleIcon} alt="Google icon"/>
-            </Button><br/>
-
-          <Button className='loginBtn' onClick={handleFacebookLogin}>
-            <Image className='loginImg' src={fbIcon} alt="Facebook icon"/>
-            </Button><br/>
-
-          <Button className='loginBtn' onClick={handleAppleLogin}>
-          <Image className='loginImg' src={appleIcon} alt="Apple icon"/>
-          </Button><br/>
-        </div>
+          
           
         
           <Button className='loginBtn fixedWidth' onClick={handleContinueWithEmail}> 
@@ -202,9 +209,12 @@ export default function LoginScreenComponent() {
           </Button>
           <br/>
 
-          <Button className='loginBtn fixedWidth' onClick={handleContinueWithPhone}>
-            <Image className="loginImg" src={phoneIcon} alt="Phone icon"/>Continue With Phone</Button><br/>
-          
+            
+            <Button className='loginBtn fixedWidth' onClick={handleCoinbaseLogin}>
+              <Image className='loginImg' src={baseIcon} alt="Base icon"/>
+              Continue with BaseWallet 
+            </Button> 
+
           <div className='specialBtn fixedWidth'>
             <ConnectButton 
               client={thirdwebClient} 
@@ -217,7 +227,7 @@ export default function LoginScreenComponent() {
                   <Image src={walletIcon}
                    alt='Wallet icon'
                    className="loginImg"/>
-                    Log In with Wallet
+                    Continue with Wallet
                   </>
                 ) }} 
             />
