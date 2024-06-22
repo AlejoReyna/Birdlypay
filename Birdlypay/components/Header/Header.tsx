@@ -48,7 +48,7 @@ export default function HeaderComponent() {
         <nav className="grid gap-2 py-4">
 
           <Link className="flex items-center gap-2" href="/">
-            <Image src={"/logo.png"} alt="Birdlypay" 
+            <Image src={"/logo1.png"} alt="Birdlypay" 
                   width={0}
                   height={0}
                   sizes="100vw"
@@ -81,7 +81,7 @@ export default function HeaderComponent() {
     </Sheet>
 
     <Link className="items-center gap-2 hidden lg:flex" href="/">
-      <Image src={"/logo.png"} alt="Birdlypay" 
+      <Image src={"/logo1.png"} alt="Birdlypay" 
             width={0}
             height={0}
             sizes="100vw"
