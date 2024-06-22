@@ -20,9 +20,9 @@ import {
   walletConnect,
   inAppWallet,
 } from "thirdweb/wallets";
-import LoginScreenComponent from "@/components/LoginScreen";
-import HeaderComponent from "@/components/Header";
-import HomepageComponent from '@/components/Homepage';
+import LoginScreenComponent from "@/components/LoginScreen/LoginScreen";
+import HeaderComponent from "@/components/Header/Header";
+import HomepageComponent from '@/components/Homepage/Homepage';
 
 const wallets = [
   createWallet("io.metamask"),
@@ -54,9 +54,11 @@ export default function Home() {
       { !(wallets.length>0) && (
         <LoginScreenComponent />
       )}
+      <div className='bg-black p-4'>
       { (wallets.length>0) && (
         <HeaderComponent />
       )}
+      </div>
       
       { (wallets.length>0) && (
         <HomepageComponent />

@@ -1,0 +1,31 @@
+.balance-card {
+    width: 95%;
+    padding: 2rem 1rem;
+}
+
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 500px) {
+    
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    body {
+        font-size: 20px;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    body {
+        font-size: 22px;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    body {
+        font-size: 24px;
+    }
+}
