@@ -20,6 +20,8 @@ import {
   walletConnect,
   inAppWallet,
 } from "thirdweb/wallets";
+
+import CreatePaylinkComponent from '@/components/Payment/Payment';
 import LoginScreenComponent from "@/components/LoginScreen/LoginScreen";
 import HeaderComponent from "@/components/Header/Header";
 import HomepageComponent from '@/components/Homepage/Homepage';
@@ -63,6 +65,8 @@ export default function Home() {
       { (wallets.length>0) && (
         <HomepageComponent />
       )}
+
+      
 
     </>
 

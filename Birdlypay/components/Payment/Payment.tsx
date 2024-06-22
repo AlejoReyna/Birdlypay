@@ -1,6 +1,6 @@
 "use client";
 
-import './page.css';
+import './Payment.css';
 
 import { useConnect,  } from "thirdweb/react";
 import { useConnectedWallets } from "thirdweb/react";
@@ -14,8 +14,8 @@ import {
   walletConnect,
   inAppWallet,
 } from "thirdweb/wallets";
-import LoginScreenComponent from "@/components/LoginScreen";
-import HeaderComponent from "@/components/header";
+import LoginScreenComponent from "@/components/LoginScreen/LoginScreen";
+import HeaderComponent from "@/components/Header/Header";
 
 const wallets = [
   createWallet("io.metamask"),
@@ -35,7 +35,7 @@ const wallets = [
 ];
 
 
-export default function Home() {
+export default function CreatePaylinkComponent() {
 
   const { connect, isConnecting, error } = useConnect();
   const wallets = useConnectedWallets();

@@ -177,8 +177,7 @@ export default function LoginScreenComponent() {
 
     return (
         <main className="bg-gif flex items-center justify-center h-screen p-8">
-         <div className="login-menu bg-new p-8 text-center rounded ">
-
+         <div className="login-menu bg-new p-8 text-center rounded flex flex-col justify-center items-center h-full">
             <div className='logo-container flex justify-center'>
               <Image 
                 src="/logo.png"
@@ -191,46 +190,43 @@ export default function LoginScreenComponent() {
               />
             </div>
               
-            <div className='ad-text flex justify-center'>
+            <div className='ad-text flex justify-center mb-8'>
               <TypewriterEffect text="Welcome, start here!" delay={50} />
             </div>
 
-      <div className='menu space-y-4'>
-          
-          
-        
-          <Button className='loginBtn fixedWidth' onClick={handleContinueWithEmail}> 
-            <Image className="loginImg"src={emailIcon} alt="Email icon"/> 
-            Continue with Email
-          </Button>
-          <br/>
+            <div className='menu space-y-4'>
+    
+              <Button className='loginBtn fixedWidth' onClick={handleContinueWithEmail}> 
+                <Image className="loginImg"src={emailIcon} alt="Email icon"/> 
+                Continue with Email
+              </Button>
+               <br/>
 
-            
-            <Button className='loginBtn fixedWidth' onClick={handleCoinbaseLogin}>
-              <Image className='loginImg' src={baseIcon} alt="Base icon"/>
-              Continue with BaseWallet 
-            </Button> 
+              <Button className='loginBtn fixedWidth' onClick={handleCoinbaseLogin}>
+                <Image className='loginImg' src={baseIcon} alt="Base icon"/>
+                Continue with BaseWallet 
+              </Button> 
 
-          <div className='specialBtn fixedWidth'>
-            <ConnectButton 
-              client={thirdwebClient} 
-              wallets={wallets} 
-              theme={"light"}
-              connectModal={{ size: "compact" }}
-              connectButton={{ 
-                label: (
-                  <>
-                  <Image src={walletIcon}
-                   alt='Wallet icon'
-                   className="loginImg"/>
-                    Continue with Wallet
-                  </>
-                ) }} 
-            />
-          </div>
+              <div className='specialBtn fixedWidth'>
+                <ConnectButton 
+                  client={thirdwebClient} 
+                  wallets={wallets} 
+                  theme={"light"}
+                  connectModal={{ size: "compact" }}
+                  connectButton={{ 
+                    label: (
+                      <>
+                      <Image src={walletIcon}
+                      alt='Wallet icon'
+                      className="loginImg"/>
+                        Continue with Wallet
+                      </>
+                    ) }} 
+                />
+              </div>
+            </div>
         </div>
 
-        </div>
       </main>
     )  
 }

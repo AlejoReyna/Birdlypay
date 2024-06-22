@@ -1,6 +1,8 @@
 "use client";
 import { thirdwebClient } from "../../utils/thirdweb";
 import Image from "next/image";
+import { useRouter } from 'next/router';
+
 import './Homepage.css';
 
 import {
@@ -10,9 +12,8 @@ import {
 
 import { baseSepolia, defineChain } from "thirdweb/chains";
 
-
-
 export default function HomepageComponent () {
+  
     return (
         <>
         <div className="container-fluid bg-black">
@@ -23,14 +24,15 @@ export default function HomepageComponent () {
 
           <div className="w-1/2">
             <div className='btn-container flex justify-end'>
-              <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-[12px] shadow actor-font"> Create Paylink </button>
+              <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-[12px] shadow actor-font"
+              > Create Paylink </button>
             </div>
           </div>
       </div>
 
       <div className='flex justify-center py-3'>
         {/* Card containing the balance */}
-        <div className="balance-card  overflow-hidden shadow-lg bg-white rounded-[12px]">
+        <div className="balance-card overflow-hidden shadow-lg bg-white rounded-[12px]">
         
           <div className="px-6 py-4">
             <div className="font-bold text-xl mb-2 actor-font"> balanceValue </div>
