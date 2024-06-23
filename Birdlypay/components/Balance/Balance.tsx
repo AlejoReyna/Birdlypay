@@ -19,8 +19,19 @@ export default function BalanceComponent() {
   const [balanceValue, setBalanceValue] = useState("0.000");
   const [currency, setCurrency] = useState("ETH");
   const wallets = useConnectedWallets();
+  const [usdValue, setUsdValue] = useState("0.00");
 
   useEffect(() => {
+    async function getEthPrice() {
+        try {
+          const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd');
+          const data = await response.json();
+          return data.ethereum.usd;
+        } catch (error) {
+          console.error("Error fetching ETH price:", error);
+          return null;
+        }
+      }
     async function getBalance() {
         if (wallets.length > 0) {
           try {
@@ -32,6 +43,12 @@ export default function BalanceComponent() {
               const formattedBalance = ethers.utils.formatEther(balance);
               setBalanceValue(parseFloat(formattedBalance).toFixed(3));
               setCurrency("ETH");
+
+              const ethPrice = await getEthPrice();
+              if (ethPrice) {
+                const usdBalance = (parseFloat(formattedBalance) * ethPrice).toFixed(2);
+                setUsdValue(usdBalance);
+                }
             } else {
               console.log("Please install MetaMask!");
             }
@@ -57,6 +74,12 @@ export default function BalanceComponent() {
       <p className="text-gray-700 text-base actor-font">
         Currency: {currency}
       </p>
+
+      <br/> 
+      <p className="text-gray-700 text-base actor-font">
+      USD Value: ${usdValue}
+      </p>
+      
     </div>
   );
 }

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import Dropdown from "@/components/Dropdown"
 import HomepageComponent from '@/components/Homepage/Homepage'; // Ruta al componente
-
+import BalanceComponent from "@/components/Balance/Balance";
 
 export default function Staking() {
   const router = useRouter(); 
@@ -12,6 +12,10 @@ export default function Staking() {
   const handleHome = () => {
     router.push('/home'); // Redirects to Homepage.tsx
   }
+
+  const balanceValue = "0.000"; // Ejemplo de balanceValue, debes integrar tu lógica para obtener el balance aquí
+  const currency = "ETH"; // Ejemplo de currency, debes integrar tu lógica para obtener la moneda aquí
+
 
   return (
     <div className='container-fluid bg-black pb-24 h-screen'>
@@ -28,6 +32,7 @@ export default function Staking() {
           </div>
       </div>
 
+      <div className="flex text-white"> <p className="m-8"> Your balance:  </p> <BalanceComponent/>  </div>
       <div className="flex justify-between items-center mx-8 mt-8 py-2 px-4 bg-white rounded-xl">
         <div className="flex items-center">
           <Image src={"/eth.png"} alt="Birdlypay" 
