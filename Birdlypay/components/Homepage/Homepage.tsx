@@ -2,6 +2,7 @@
 import { thirdwebClient } from "../../utils/thirdweb";
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
+import BalanceComponent from "../Balance/Balance";
 
 import './Homepage.css';
 
@@ -43,12 +44,7 @@ export default function HomepageComponent () {
         {/* Card containing the balance */}
         <div className="balance-card overflow-hidden shadow-lg bg-white rounded-[12px]">
         
-          <div className="px-6 py-4">
-            <div className="font-bold text-xl mb-2 actor-font"> balanceValue </div>
-              <p className="text-gray-700 text-base actor-font">
-                Currency: currency
-              </p>
-          </div>
+            <BalanceComponent />
         </div>
         {/* End of card containing the card */}
       </div>

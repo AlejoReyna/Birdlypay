@@ -1,5 +1,6 @@
 "use client";
 
+import { ThirdwebProvider } from "@thirdweb-dev/react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button"
 import { useState } from 'react';
@@ -16,10 +17,11 @@ export default function Home() {
 
   
   return (
-    <div>
-    {activeComponent === 'home' && <HomepageComponent />}
-    {activeComponent === 'payment' && <PaylinkComponent />}
-  </div>
+
+    <ThirdwebProvider>
+      <HomepageComponent/>
+    </ThirdwebProvider>
+
 
   );
 }

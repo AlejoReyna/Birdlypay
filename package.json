@@ -1,8 +1,13 @@
 {
   "dependencies": {
+    "@thirdweb-dev/chains": "^0.1.120",
+    "@thirdweb-dev/react": "^4.9.4",
+    "@thirdweb-dev/sdk": "^4.0.99",
     "@types/bootstrap": "^5.2.10",
     "@types/react-bootstrap": "^0.32.36",
+    "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
+    "ethers": "^5.7.2",
     "react-bootstrap": "^2.10.3",
     "react-router-dom": "^6.23.1"
   }
