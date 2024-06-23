@@ -1,5 +1,6 @@
 "use client"
 
+import { useState, useEffect } from 'react';
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import Dropdown from "@/components/Dropdown"
@@ -15,16 +16,20 @@ export default function Staking() {
 
   const balanceValue = "0.000"; // Ejemplo de balanceValue, debes integrar tu lógica para obtener el balance aquí
   const currency = "ETH"; // Ejemplo de currency, debes integrar tu lógica para obtener la moneda aquí
+  const [usdBalance, setUsdBalance] = useState("0.00");
+  const [stakeAmount, setStakeAmount] = useState("0");
 
+  
 
   return (
+    
     <div className='container-fluid bg-black pb-24 h-screen'>
       {/* First row */}
       <div className='flex flex-col'>
           <div className="w-1/2">
             <div className='btn-container flex justify-start m-4'>
               <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-[12px] shadow actor-font"
-                onClick={handleHome}> Back </button>
+                onClick={handleHome}> Sexo </button>
             </div>
           </div>
           <div className="w-1/2 ml-4">
@@ -32,7 +37,7 @@ export default function Staking() {
           </div>
       </div>
 
-      <div className="flex text-white"> <p className="m-8"> Your balance:  </p> <BalanceComponent/>  </div>
+      <div className="flex text-white"> <p className="m-8"> Your balance:  </p> <BalanceComponent onUsdBalanceChange={setUsdBalance}/>  </div>
       <div className="flex justify-between items-center mx-8 mt-8 py-2 px-4 bg-white rounded-xl">
         <div className="flex items-center">
           <Image src={"/eth.png"} alt="Birdlypay" 
@@ -49,8 +54,16 @@ export default function Staking() {
       <p className='text-white ml-8 mt-8'> Amount </p>
 
       <div className="flex justify-between items-center mx-8 mt-4 p-4 bg-white rounded-xl">
-        <h6 className='font-bold'> 0 USD </h6>
-        <button className="bg-[#24F129] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-2xl">
+      <input
+        type="number"
+        value={stakeAmount}
+        onChange={(e) => setStakeAmount(e.target.value)}
+        className='font-bold w-full'
+        placeholder="0 USD"
+      />
+        <button className="bg-[#24F129] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-2xl"
+        onClick={() => setStakeAmount(usdBalance)}
+        >
           Max
         </button>
       </div>
