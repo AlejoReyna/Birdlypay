@@ -1,27 +1,26 @@
 "use client";
 
-import { ThirdwebProvider } from "@thirdweb-dev/react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button"
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import HomepageComponent from '@/components/Homepage/Homepage'; 
-import PaylinkComponent from "@/components/Payment/Payment";
+import LinkComponent from '@/components/link/page'; 
 
 export default function Home() {
 
-  const [activeComponent, setActiveComponent] = useState<'home' | 'payment'>('home');
+  const router = useRouter();
 
-  const showHome = () => setActiveComponent('home');
-  const showPayment = () => setActiveComponent('payment');
+  const handleNavigateToLink = () => {
+    router.push('/link');
+  };
 
-  
+  useEffect(() => {
+      router.push('/home'); // Redirect to the login page after 3 seconds
+  }, [router]);
+
   return (
-
-    <ThirdwebProvider>
-      <HomepageComponent/>
-    </ThirdwebProvider>
-
-
+  <div className="flex items-center justify-center h-screen bg-dark">
+      
+  </div>
   );
 }

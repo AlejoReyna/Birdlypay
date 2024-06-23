@@ -1,31 +1,15 @@
 "use client";
 import { thirdwebClient } from "../../utils/thirdweb";
+
 import Image from "next/image";
-import { useRouter } from 'next/navigation';
 import BalanceComponent from "../Balance/Balance";
 
-import './Homepage.css';
-
-import {
-    ThirdwebProvider,
-    ConnectButton,
-  } from "thirdweb/react";
+import { ThirdwebProvider, ConnectButton } from "thirdweb/react";
 
 import { baseSepolia, defineChain } from "thirdweb/chains";
 
-export default function HomepageComponent () {
-  const router = useRouter(); 
-
-  // Redirects to Staking.tsx
-  const handleStaking = () => {
-    router.push('/staking'); 
-  };
-
-  const handlePaylink = () => {
-    router.push('/payment');
-  }
-
-
+export default function LinkComponent () {
+    
     return (
         <>
         <div className="container-fluid bg-black">
@@ -37,7 +21,7 @@ export default function HomepageComponent () {
           <div className="w-1/2">
             <div className='btn-container flex justify-end'>
               <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-[12px] shadow actor-font"
-               onClick={handlePaylink}> Create Paylink </button>
+              > Create Paylink </button>
             </div>
           </div>
       </div>
@@ -88,7 +72,7 @@ export default function HomepageComponent () {
             <div className='flex'>
              
               <button className="btn-green hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-1 actor-font" 
-              onClick={handleStaking}>
+              >
                 Button
               </button>
 
@@ -100,5 +84,6 @@ export default function HomepageComponent () {
           </div>
         </div>
         </>
+
     );
-}
+} 
