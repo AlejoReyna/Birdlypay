@@ -27,10 +27,14 @@ export default function Payment() {
           </div>
       </div>
       <p className='text-white ml-8 mt-8'> Payment title </p>
-
+        
+      {/** Here must go the payment title */}
       <div className="flex justify-center mx-8 mt-4 p-4 bg-white rounded-xl">
-        <h6 className='font-bold'> Pay for web development </h6>
+        <input
+        
+        />
       </div>
+      {/** End of payment title input */}
 
       <div className="flex justify-between items-center mx-8 mt-4 py-2 px-4 bg-white rounded-xl">
         <div className="flex justify-between items-center">
@@ -48,11 +52,13 @@ export default function Payment() {
       <p className='text-white ml-8 mt-8'> Amount </p>
 
       <div className="flex mx-8 mt-4 p-4 bg-white rounded-xl">
-        <h6 className='font-bold'> permanent: $1000 USD - 0.29 ETH </h6>
+        <p> $ </p>
+        <input type='number'/>
+        <p> USD </p>
       </div>
 
       <div className="flex mx-8 mt-4 p-4 bg-white rounded-xl">
-        <h6 className='font-bold'> Variable: There is no fixed payment amount </h6>
+        <h6 className='font-bold'> Variable: Alchile no para que sirva este input </h6>
       </div>
 
       <div className="w-full flex justify-center my-8">
