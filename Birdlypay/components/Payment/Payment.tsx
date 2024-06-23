@@ -35,20 +35,22 @@ const wallets = [
 ];
 
 
-export default function CreatePaylinkComponent() {
-
+export default function PaylinkComponent() {
+  
+  
   const { connect, isConnecting, error } = useConnect();
   const wallets = useConnectedWallets();
 
   console.log("wallets", wallets);
 
   return (
-    <div className='container-fluid bg-black pb-8'>
+    <div className='container-fluid bg-black pb-8 h-screen'>
       {/* First row */}
       <div className='flex flex-col'>
           <div className="w-1/2">
             <div className='btn-container flex justify-start m-4'>
-              <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-[12px] shadow actor-font"> Back </button>
+              <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-[12px] shadow actor-font"
+              > Back </button>
             </div>
           </div>
           <div className="w-1/2">

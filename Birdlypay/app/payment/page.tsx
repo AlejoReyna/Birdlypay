@@ -2,17 +2,24 @@
 
 import Image from "next/image";
 import Dropdown from "@/components/Dropdown"
+import { useRouter } from 'next/navigation';
 
 
 export default function Payment() {
+  const router = useRouter(); 
+
+  const handleHome = () => {
+    router.push('/home'); // Redirects to Homepage.tsx
+  }
 
   return (
-    <div className='container-fluid bg-black pb-24'>
+    <div className='container-fluid bg-black h-screen'>
       {/* First row */}
       <div className='flex flex-col'>
           <div className="w-1/2">
             <div className='btn-container flex justify-start m-4'>
-              <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-[12px] shadow actor-font"> Back </button>
+              <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-[12px] shadow actor-font"
+              onClick={handleHome}> Back </button>
             </div>
           </div>
           <div className="w-1/2 ml-4">

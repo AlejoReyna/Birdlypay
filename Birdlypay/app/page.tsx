@@ -2,23 +2,24 @@
 
 import Image from "next/image";
 import { Button } from "@/components/ui/button"
-import { useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import HomepageComponent from '@/components/Homepage/Homepage'; 
+import PaylinkComponent from "@/components/Payment/Payment";
 
 export default function Home() {
 
-  const router = useRouter();
+  const [activeComponent, setActiveComponent] = useState<'home' | 'payment'>('home');
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      router.push('/home'); // Redirect to the login page after 3 seconds
-    }, 4000);
-    return () => clearTimeout(timer); // Cleanup timer on component unmount
-  }, [router]);
+  const showHome = () => setActiveComponent('home');
+  const showPayment = () => setActiveComponent('payment');
 
+  
   return (
-  <div className="flex items-center justify-center h-screen bg-dark">
-      
+    <div>
+    {activeComponent === 'home' && <HomepageComponent />}
+    {activeComponent === 'payment' && <PaylinkComponent />}
   </div>
+
   );
 }
