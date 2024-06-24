@@ -21,12 +21,21 @@ import {
 
 import { useConnect,  } from "thirdweb/react";
 import { useConnectedWallets } from "thirdweb/react";
+import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
 
 export default function HeaderComponent() {
+
+  const handleMyProfile = () => {
+
+  }
 
   const { connect, isConnecting, error } = useConnect();
   const wallets = useConnectedWallets();
   const router = useRouter();
+
+  const handleProfile = () => {
+    router.push('/myprofile'); 
+  }
 
   const handleDisconnect = () => {
     // Handle the disconnect event here
@@ -134,6 +143,10 @@ export default function HeaderComponent() {
     </NavigationMenu>
 
     <div>
+    <button className="actor-font" 
+      onClick={handleProfile}> Button </button>
+    </div>
+    <div>
       <ConnectButton
               client={thirdwebClient}
               wallets={wallets}
@@ -157,8 +170,8 @@ export default function HeaderComponent() {
 
   )
 }
-
-function MenuIcon(props) {
+interface IconProps extends React.SVGProps<SVGSVGElement> {}
+function MenuIcon(props: IconProps ) {
   return (
     <svg
       {...props}
@@ -178,8 +191,7 @@ function MenuIcon(props) {
     </svg>
   )
 }
-
-function SettingsIcon(props) {
+function SettingsIcon(props: IconProps) {
   return (
     <svg
       {...props}
@@ -200,7 +212,7 @@ function SettingsIcon(props) {
 }
 
 
-function FolderIcon(props) {
+function FolderIcon(props: IconProps) {
   return (
     <svg
       {...props}

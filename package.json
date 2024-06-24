@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@metapool/eth-liquid-staking-sdk": "^1.0.0",
     "@thirdweb-dev/chains": "^0.1.120",
     "@thirdweb-dev/react": "^4.9.4",
     "@thirdweb-dev/sdk": "^4.0.99",
