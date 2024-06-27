@@ -28,6 +28,12 @@ export default function PaymentLink() {
     router.push('/home'); // Redirects to Homepage.tsx
   }
 
+  const handleEmailShare = () => {
+    const subject = encodeURIComponent("Payment Link");
+    const body = encodeURIComponent(`Here's your payment link: ${paymentLink}`);
+    window.location.href = `mailto:?subject=${subject}&body=${body}`;
+  };
+
   const handleCopy = async () => {
     if (paymentLink) {
       try {
@@ -99,14 +105,17 @@ export default function PaymentLink() {
           </p>
         </div>
 
-        <div className="flex items-center py-2 px-4 bg-white rounded-xl cursor-pointer">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
-          </svg>
-          <p className="ml-2 font-bold	">
-            Email
-          </p>
-        </div>
+       <div 
+  className="flex items-center py-2 px-4 bg-white rounded-xl cursor-pointer"
+  onClick={handleEmailShare}
+>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+  </svg>
+  <p className="ml-2 font-bold">
+    Email
+  </p>
+</div>
       </div>
 
       {showQR && paymentLink && (
