@@ -7,7 +7,7 @@ import { QRCodeSVG } from 'qrcode.react';
 
 export default function PaymentLink() {
   const searchParams = useSearchParams();
-  const [paymentLink, setPaymentLink] = useState("");
+  const [paymentLink, setPaymentLink] = useState<string>("");
   const [showQR, setShowQR] = useState(false);
   
   useEffect(() => {
@@ -27,6 +27,49 @@ export default function PaymentLink() {
   const handleHome = () => {
     router.push('/home'); // Redirects to Homepage.tsx
   }
+
+  type ShareUrl = string;
+  const showShareOptions = (whatsappUrl: ShareUrl, telegramUrl: ShareUrl): void => {
+    // This is a simple alert, but you might want to create a modal or dropdown instead
+    const option = window.prompt(
+      "Choose an option to share:\n1. WhatsApp\n2. Telegram"
+    );
+  
+    switch(option) {
+      case "1":
+        window.open(whatsappUrl, '_blank');
+        break;
+      case "2":
+        window.open(telegramUrl, '_blank');
+        break;
+      default:
+        alert("Invalid option or sharing cancelled");
+    }
+  };
+  
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Payment Link',
+          text: 'Here\'s your payment link',
+          url: paymentLink,
+        });
+        console.log('Successful share');
+      } catch (error) {
+        console.log('Error sharing:', error);
+      }
+    } else {
+      // Fallback for browsers that don't support Web Share API
+      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(`Here's your payment link: ${paymentLink}`)}`;
+      const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(paymentLink)}&text=${encodeURIComponent("Here's your payment link")}`;
+      
+      // You can add more share options here
+  
+      // Create and show a modal or dropdown with these options
+      showShareOptions(whatsappUrl, telegramUrl);
+    }
+  };
 
   const handleEmailShare = () => {
     const subject = encodeURIComponent("Payment Link");
@@ -96,13 +139,16 @@ export default function PaymentLink() {
           </p>
         </div>
 
-        <div className="flex items-center py-2 px-4 bg-white rounded-xl cursor-pointer">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
-          </svg>
-          <p className="ml-2 font-bold	">
-            Share
-          </p>
+        <div 
+        className="flex items-center py-2 px-4 bg-white rounded-xl cursor-pointer"
+        onClick={handleShare}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
+        </svg>
+        <p className="ml-2 font-bold">
+          Share
+        </p>
         </div>
 
        <div 
