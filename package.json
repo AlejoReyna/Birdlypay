@@ -11,6 +11,10 @@
     "ethers": "^5.7.2",
     "next": "^14.2.4",
     "react-bootstrap": "^2.10.3",
-    "react-router-dom": "^6.23.1"
+    "react-router-dom": "^6.23.1",
+    "web3": "^4.10.0"
+  },
+  "devDependencies": {
+    "@openzeppelin/contracts": "^4.9.0"
   }
 }

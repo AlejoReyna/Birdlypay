@@ -19,8 +19,8 @@ export default function Payment() {
     router.push('/home'); 
   }
 
-  const handleLink = () => {
-    router.push('/link');
+  const handleLink= () => {
+    router.push('/paymentLink');
   }
 
   const handleCreateLink = async () => {
@@ -40,7 +40,7 @@ export default function Payment() {
       const paymentId = ethers.utils.id(Date.now().toString() + address);
 
       // Create the payment link
-      const link = `${window.location.origin}/paymentPage?title=${encodeURIComponent(paymentTitle)}&amount=${amount}&address=${address}`;
+      const link = `${window.location.origin}/paymentLink?title=${encodeURIComponent(paymentTitle)}&amount=${amount}&address=${address}`;
 
       
       setPaymentLink(link);
@@ -67,44 +67,46 @@ export default function Payment() {
       <p className='text-white ml-8 mt-8'> Payment title </p>
         
       {/** Here must go the payment title */}
-      <div className="flex justify-center mx-8 mt-4 p-4 bg-white rounded-xl">
+      <div className="flex justify-center mx-8 mt-4 p-4 bg-white rounded-xl ">
         <input
+         className="flex-grow mx-2 p-2 text-center placeholder-center"
          value={paymentTitle}
          onChange={(e) => setPaymentTitle(e.target.value)}
          placeholder="Enter payment title"
+         style={{flexGrow: 1 }}
         />
       </div>
       {/** End of payment title input */}
 
-      <div className="flex justify-between items-center mx-8 mt-4 py-2 px-4 bg-white rounded-xl">
-        <div className="flex justify-between items-center">
+      <div className="flex justify-center items-center mx-8 mt-4 py-2 px-4 bg-white rounded-xl">
+        <div className="flex justify-between items-center ">
           <Image src={"/eth.png"} alt="Birdlypay" 
             width={0}
             height={0}
             sizes="100vw"
-            style={{ width: 'auto', height: '50px', margin: '5px'}}
+            style={{ width: 'auto', height: '50px', margin: '5px' }}
           />
-          <h6 className='font-bold align-middle	'> ETH </h6>
+          <h6 className='font-bold align-middle'> Payment in ETH </h6>
         </div>
-        <Dropdown />
+       
       </div>
 
       <p className='text-white ml-8 mt-8'> Amount </p>
 
-      <div className="flex mx-8 mt-4 p-4 bg-white rounded-xl">
+      <div className="flex mx-8 mt-4 p-4 justify-center bg-white rounded-xl">
         <p> $ </p>
         <input 
           type='number'
           value={amount}
+          placeholder='Type an ammount'
           onChange={(e) => setAmount(e.target.value)}
+          style={{ flexGrow: 1 }}
+          className="flex-grow mx-2 p-2 text-center placeholder-center"
         />
         <p> USD </p>
       </div>
 
-      <div className="flex mx-8 mt-4 p-4 bg-white rounded-xl">
-        <h6 className='font-bold'> Variable: Alchile no para que sirva este input </h6>
-      </div>
-
+    
       <div className="w-full flex justify-center my-8">
         <button className="bg-[#24F129] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-2xl"
         onClick={ handleCreateLink}>
