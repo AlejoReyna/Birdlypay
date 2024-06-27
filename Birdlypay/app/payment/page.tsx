@@ -101,7 +101,7 @@ export default function Payment() {
         <input 
           type='number'
           value={amount}
-          placeholder='Type an ammount'
+          placeholder='Type an amount'
           onChange={(e) => setAmount(e.target.value)}
           style={{ flexGrow: 1 }}
           className="flex-grow mx-2 p-2 text-center placeholder-center"
