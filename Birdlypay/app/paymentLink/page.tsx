@@ -16,7 +16,7 @@ export default function PaymentLink() {
     const address = searchParams.get('address');
 
     if (title && amount && address) {
-      const link = `${window.location.origin}/payment?title=${title}&amount=${amount}&address=${address}`;
+      const link = `${window.location.origin}/receiverPage?title=${title}&amount=${amount}&address=${address}`;
       setPaymentLink(link);
     }
   }, [searchParams]);
@@ -29,10 +29,9 @@ export default function PaymentLink() {
   }
 
   type ShareUrl = string;
-  const showShareOptions = (whatsappUrl: ShareUrl, telegramUrl: ShareUrl): void => {
-    // This is a simple alert, but you might want to create a modal or dropdown instead
+  const showShareOptions = (whatsappUrl: ShareUrl, telegramUrl: ShareUrl, discordUrl: ShareUrl): void => {
     const option = window.prompt(
-      "Choose an option to share:\n1. WhatsApp\n2. Telegram"
+      "Choose an option to share:\n1. WhatsApp\n2. Telegram \n3. Discord"
     );
   
     switch(option) {
@@ -41,6 +40,9 @@ export default function PaymentLink() {
         break;
       case "2":
         window.open(telegramUrl, '_blank');
+        break;
+      case "3":
+          window.open(discordUrl, '_blank');
         break;
       default:
         alert("Invalid option or sharing cancelled");
@@ -61,13 +63,15 @@ export default function PaymentLink() {
       }
     } else {
       // Fallback for browsers that don't support Web Share API
+
+      const link: string = paymentLink || '';
+      const shareText = `Here's your payment link: ${link}`;
+
       const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(`Here's your payment link: ${paymentLink}`)}`;
       const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(paymentLink)}&text=${encodeURIComponent("Here's your payment link")}`;
-      
-      // You can add more share options here
-  
-      // Create and show a modal or dropdown with these options
-      showShareOptions(whatsappUrl, telegramUrl);
+      const discordUrl: ShareUrl = `https://discord.com/channels/@me?message=${encodeURIComponent(shareText)}`;
+
+      showShareOptions(whatsappUrl, telegramUrl, discordUrl);
     }
   };
 
