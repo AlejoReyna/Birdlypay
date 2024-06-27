@@ -5,7 +5,7 @@ import Image from "next/image";
 import Dropdown from "@/components/Dropdown"
 import { useRouter } from 'next/navigation';
 import { ethers } from 'ethers';
-import PaymentPage from '../paymentPage/page';
+
 
 export default function Payment() {
   const router = useRouter(); 
@@ -19,36 +19,39 @@ export default function Payment() {
     router.push('/home'); 
   }
 
-  const handleLink= () => {
-    router.push('/paymentLink');
-  }
-
-  const handleCreateLink = async () => {
+  const handleLink=  async() => {
     if (!window.ethereum) {
       alert("Please install MetaMask!");
       return;
     }
-
     try {
       // Request account access
       await window.ethereum.request({ method: 'eth_requestAccounts' });
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       const address = await signer.getAddress();
-
+  
       // Create a unique identifier for this payment
       const paymentId = ethers.utils.id(Date.now().toString() + address);
-
+  
       // Create the payment link
       const link = `${window.location.origin}/paymentLink?title=${encodeURIComponent(paymentTitle)}&amount=${amount}&address=${address}`;
-
-      
+  
+      // Set the payment link in the state
       setPaymentLink(link);
+  
+      // Navigate to the paymentLink page with the generated link
+      router.push(link);
     } catch (error) {
       console.error("Error creating payment link:", error);
       alert("Error creating payment link. Please try again.");
     }
-  }
+  };  
+
+   
+  
+
+  
 
   return (
     <div className='container-fluid bg-black h-screen'>
@@ -109,7 +112,7 @@ export default function Payment() {
     
       <div className="w-full flex justify-center my-8">
         <button className="bg-[#24F129] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-2xl"
-        onClick={ handleCreateLink}>
+        onClick={ handleLink }>
           Create
         </button>
       </div>
@@ -127,4 +130,4 @@ export default function Payment() {
 
 
   );
-}
+} 
