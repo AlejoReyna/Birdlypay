@@ -23,7 +23,7 @@ export default function Staking() {
 
   return (
     
-    <div className='container-fluid bg-black pb-24 h-screen'>
+    <div className='flex flex-col bg-black h-max min-h-screen'>
       {/* First row */}
       <div className='flex flex-col'>
           <div className="w-1/2">
