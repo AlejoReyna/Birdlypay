@@ -29,7 +29,7 @@ export default function Staking() {
           <div className="w-1/2">
             <div className='btn-container flex justify-start m-4'>
               <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-[12px] shadow actor-font"
-                onClick={handleHome}> Back </button>
+                onClick={handleHome}> Sexo </button>
             </div>
           </div>
           <div className="w-1/2 ml-4">

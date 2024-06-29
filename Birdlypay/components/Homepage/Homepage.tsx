@@ -56,26 +56,8 @@ export default function HomepageComponent () {
         {/* Card ? */}
         <div className='flex justify-center py-3'>
 
-          <div className="w-1/2 bg-white m-8 rounded-[12px] small-card">
-            <div className="max-w-sm">
-              <h6 className='font-bold'> Vacations </h6>
-              <p> Goal: value </p>
-              <p> Progress: value </p>
-              <button className="btn-green hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-              Button
-              </button>
-            </div>
-          </div>
-
-          <div className="w-1/2 bg-white m-8 rounded-[12px]">
-            <div className="max-w-sm  small-card">
-                <h6 className='font-bold'> Vacations </h6>
-                <p> Goal: value </p>
-                <p> Progress: value </p>
-                <button className="btn-green hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Button
-                </button>
-            </div>
+          <div className="flex justify-center text-white">
+            Add a goal!
           </div>
         </div>
 
@@ -84,7 +66,7 @@ export default function HomepageComponent () {
           {/* Card of staking */}
           <div className='balance-card  rounded-[12px] bg-white text-center mb-5'>
             
-            <h6 className='font-bold actor-font'> Staking </h6>
+            <h6 className='font-bold actor-font'> Staking - Under construction </h6>
             <div className='flex'>
              
               <button className="btn-green hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-1 actor-font" 

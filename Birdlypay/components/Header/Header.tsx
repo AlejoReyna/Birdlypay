@@ -142,10 +142,7 @@ export default function HeaderComponent() {
       </NavigationMenuList>
     </NavigationMenu>
 
-    <div>
-    <button className="actor-font" 
-      onClick={handleProfile}> Button </button>
-    </div>
+    
     <div>
       <ConnectButton
               client={thirdwebClient}

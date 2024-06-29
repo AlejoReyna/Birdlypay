@@ -7,6 +7,8 @@ const inter = Inter({ subsets: ["latin"] });
 import {
   ThirdwebProvider,
 } from "thirdweb/react";
+
+
 import HomepageComponent from "@/components/Homepage/Homepage";
 
 // export const metadata: Metadata = {
