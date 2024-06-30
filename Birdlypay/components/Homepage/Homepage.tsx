@@ -3,9 +3,9 @@ import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import BalanceComponent from "../Balance/Balance";
 import myWallet from './my-wallet.png';
-import ethIcon from './eth.png';
-import stockIcon from './stock.png';
-import goalsIcon from './goals.png';
+import stakingIcon from './stake.png';
+import marketIcon from './market.png';
+import goalsIcon from './star.png';
 import birdIcon from './bird.png';
 import { ChevronUpIcon } from '@heroicons/react/24/solid';
 
@@ -50,12 +50,12 @@ export default function HomepageComponent() {
           <div className="flex flex-col w-24 h-24 aspect-square bg-white rounded-lg shadow items-center justify-center
                           cursor-pointer hover:bg-gray-100" onClick={handleStaking}>
 
-            <Image src={ethIcon} className="w-12 h-12" alt="A coin icon" />
+            <Image src={stakingIcon} className="w-12 h-12" alt="A coin icon" />
             <p className="italic">Staking</p>
           </div>
 
           <div className="flex flex-col w-24 h-24 aspect-square bg-white rounded-lg shadow items-center justify-center">
-            <Image src={stockIcon} className="w-12 h-12" alt="A stocks icon" />
+            <Image src={marketIcon} className="w-12 h-12" alt="A stocks icon" />
             <p className="italic">Stocks</p>
           </div>
 
@@ -124,7 +124,7 @@ export default function HomepageComponent() {
   );
 }
 
-function EyeIcon(props) {
+function EyeIcon(props : any) {
   return (
     <svg
       {...props}
@@ -145,7 +145,7 @@ function EyeIcon(props) {
 }
 
 
-function LinkIcon(props) {
+function LinkIcon(props : any) {
   return (
     <svg
       {...props}
@@ -166,7 +166,7 @@ function LinkIcon(props) {
 }
 
 
-function QrCodeIcon(props) {
+function QrCodeIcon(props : any) {
   return (
     <svg
       {...props}

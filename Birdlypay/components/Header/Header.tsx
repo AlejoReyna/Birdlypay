@@ -1,7 +1,8 @@
 "use client"
 
 import './Header.css';
-import { useState } from 'react';
+import { useAddress } from "@thirdweb-dev/react";
+import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { SheetTrigger, SheetContent, Sheet } from "@/components/ui/sheet";
 import Link from "next/link";
@@ -39,13 +40,22 @@ export default function HeaderComponent() {
     router.push('/myprofile'); 
   }
 
+
+  const [username, setUsername] = useState('');
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleSaveUsername = () => {
+   
+  };
+
+  
   const handleDisconnect = () => {
     // Handle the disconnect event here
     console.log("Wallet disconnected");
     router.push('/'); // Redirect to the login page after 3 seconds
   };  
 
-  const changeBirdImage = (direction) => {
+  const changeBirdImage = (direction : any ) => {
     setCurrentBirdIndex((prevIndex) => {
       if (direction === 'next') {
         return (prevIndex + 1) % birdImages.length;
@@ -55,7 +65,10 @@ export default function HeaderComponent() {
     });
   };
 
+ 
+
   return (
+    
     <header className="sticky  top-0 z-50 flex items-center justify-between px-8 py-4 rounded-2xl  ">
 
     <Sheet>
@@ -71,9 +84,9 @@ export default function HeaderComponent() {
       {(wallets.length>0) ? (
         <>
         <div>
-        <div className='flex flex-col items-center mt-8'>
+         <div className='flex flex-col items-center mt-8'>
                     <div className="flex items-center">
-                      <Button onClick={() => changeBirdImage('prev')} className="mr-2">
+                      <Button onClick={() => changeBirdImage('prev')} className="bg-transparent mr-2">
                         &#8592; {/* Left arrow */}
                       </Button>
                       <Image
@@ -81,15 +94,34 @@ export default function HeaderComponent() {
                         src={birdImages[currentBirdIndex]}
                         alt=""
                       />
-                      <Button onClick={() => changeBirdImage('next')} className="ml-2">
+                      <Button onClick={() => changeBirdImage('next')} className="bg-transparent ml-2">
                         &#8594; {/* Right arrow */}
                       </Button>
                     </div>
                   </div>
-
-        <p className='mt-2 text-white text-center'> Account </p>
-      <p className='mt-4 text-white text-xl text-center italic'> yourUserName </p>
-      <p className='mt-4 text-blue-700 text-center cursor-pointer'> Edit profile </p>
+        
+        {/** Below must go an input */}
+        {isEditing ? (
+  <div className='mt-4 flex items-center justify-center'>
+    <input
+      type="text"
+      value={username}
+      onChange={(e) => setUsername(e.target.value)}
+      className="bg-transparent border-b border-white text-white text-center"
+      placeholder="Enter username"
+    />
+    <button onClick={handleSaveUsername} className="ml-2 text-blue-500">
+      Save
+    </button>
+  </div>
+) : (
+  <p className='mt-4 text-white text-xl text-center italic'>
+    {username || 'Set your username'}
+  </p>
+)}
+<p className='mt-4 text-blue-700 text-center cursor-pointer' onClick={() => setIsEditing(!isEditing)}>
+  {isEditing ? 'Cancel' : 'Edit profile'}
+</p>
       <div className='ml-8 mt-8'>
         <div className="flex mt-2 py-2 px-4 rounded-xl cursor-pointer text-white">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
@@ -156,7 +188,7 @@ export default function HeaderComponent() {
     
 
     <Link className="items-center gap-2 flex lg:hidden" href="/">
-     <p className='text-white'> Gm, userName! </p>
+    <p className='text-white'> Gm, {username || 'User'}! </p>
     </Link>
 
     <NavigationMenu className="hidden lg:flex">
