@@ -20,7 +20,7 @@ export const client = createThirdwebClient({
 export const contract = getContract({
   client,
   chain: defineChain(84532),
-  address: "0xd883A13b298a6A05196b3Afc68FA682b210c64Dc"
+  address: "0xf3F7F05406d9F2B4EcB43Cc240bd6657bB6A8f7f"
 });
 
 export default function Payment() {
@@ -30,7 +30,8 @@ export default function Payment() {
   const [amount, setAmount] = useState("");
   const [paymentLink, setPaymentLink] = useState("");
   const [address, setAddress] = useState("");
-  const newGuid: string = uuidv4();
+  const [paymentGuid, setPaymentGuid] = useState(uuidv4());
+  // const newGuid: string = uuidv4();
 
   const handleHome = () => {
     router.push('/home');
@@ -39,8 +40,8 @@ export default function Payment() {
 
   const transaction = prepareContractCall({
     contract,
-    method: "function createPaymentLink(uint256 amount, string title, string guid)",
-    params: [BigInt(amount), paymentTitle, newGuid]
+    method: "function createPaymentLink(uint256 amount, string title, string guid, string description)",
+    params: [BigInt(amount), paymentTitle, paymentGuid, paymentDescription],
 
   });
 
@@ -50,41 +51,43 @@ export default function Payment() {
     console.log("Address: ", account?.address);
     setAddress(account?.address);
   }
-  const handleCreateLink = async () => {
-    if (!window.ethereum) {
-      alert("Please install MetaMask!");
-      return;
-    }
 
-    try {
-      // Request account access
-      await window.ethereum.request({ method: 'eth_requestAccounts' });
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const signer = provider.getSigner();
-      const address = await signer.getAddress();
+  // const handleCreateLink = async () => {
+  //   if (!window.ethereum) {
+  //     alert("Please install MetaMask!");
+  //     return;
+  //   }
 
-      // Create a unique identifier for this payment
-      const paymentId = ethers.utils.id(Date.now().toString() + address);
+  //   try {
+  //     // Request account access
+  //     await window.ethereum.request({ method: 'eth_requestAccounts' });
+  //     const provider = new ethers.providers.Web3Provider(window.ethereum);
+  //     const signer = provider.getSigner();
+  //     const address = await signer.getAddress();
 
-      // Create the payment link
-      const link = `${window.location.origin}/paymentPage?title=${encodeURIComponent(paymentTitle)}&amount=${amount}&address=${address}`;
+  //     // Create a unique identifier for this payment
+  //     const paymentId = ethers.utils.id(Date.now().toString() + address);
 
+  //     // Create the payment link
+  //     //const link = `${window.location.origin}/paymentPage?title=${encodeURIComponent(paymentTitle)}&amount=${amount}&address=${address}`;
+  //     const link = `${window.location.origin}/paymentPage?guid=${paymentGuid}`;
 
-      setPaymentLink(link);
-    } catch (error) {
-      console.error("Error creating payment link:", error);
-      alert("Error creating payment link. Please try again.");
-    }
-  }
+  //     setPaymentLink(link);
+  //   } catch (error) {
+  //     console.error("Error creating payment link:", error);
+  //     alert("Error creating payment link. Please try again.");
+  //   }
+  // }
 
   const handleSuccess = (receipt: any) => {
     console.log("Payment link created successfully. receipt: ", receipt);
 
-    const link = `${window.location.origin}/paymentLink?title=${encodeURIComponent(paymentTitle)}&amount=${amount}&address=${address}`;
+    //const link = `${window.location.origin}/receiverPage?title=${encodeURIComponent(paymentTitle)}&amount=${amount}&address=${address}`;
+    const link = `${window.location.origin}/receiverPage?guid=${paymentGuid}`;
     // Set the payment link in the state
     setPaymentLink(link);
     // Navigate to the paymentLink page with the generated link
-    router.push(link);
+    //router.push(link);
   }
 
   return (
