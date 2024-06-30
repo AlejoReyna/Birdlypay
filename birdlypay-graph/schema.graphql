@@ -1,0 +1,33 @@
+type OwnershipTransferred @entity(immutable: true) {
+  id: Bytes!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type PaymentLinkCreated @entity(immutable: true) {
+  id: Bytes!
+  creator: Bytes! # address
+  amount: BigInt! # uint256
+  title: String! # string
+  description: String! # string
+  guid: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type PaymentMade @entity(immutable: true) {
+  id: Bytes!
+  payer: Bytes! # address
+  recipient: Bytes! # address
+  amount: BigInt! # uint256
+  fee: BigInt! # uint256
+  guid: String! # string
+  notes: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
