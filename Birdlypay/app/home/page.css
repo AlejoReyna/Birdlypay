@@ -22,9 +22,10 @@
 }
 
 .bg-dark {
-    background-image: url("./dark-bg.png");
+    background-image: url("./new-bg.png");
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
     
 }
 

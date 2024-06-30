@@ -1,22 +1,18 @@
 "use client";
-import { thirdwebClient } from "../../utils/thirdweb";
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import BalanceComponent from "../Balance/Balance";
+import myWallet from './my-wallet.png';
+import ethIcon from './eth.png';
+import stockIcon from './stock.png';
+import goalsIcon from './goals.png';
+import birdIcon from './bird.png';
 
 import './Homepage.css';
-
-import {
-    ThirdwebProvider,
-    ConnectButton,
-  } from "thirdweb/react";
-
-import { baseSepolia, defineChain } from "thirdweb/chains";
 
 export default function HomepageComponent () {
   const router = useRouter(); 
 
-  // Redirects to Staking.tsx
   const handleStaking = () => {
     router.push('/staking'); 
   };
@@ -25,61 +21,52 @@ export default function HomepageComponent () {
     router.push('/payment');
   }
 
-
     return (
         <>
-        <div className="container-fluid bg-black">
-        <div className='flex py-6'>
-          <div className="w-1/2">
-            <h6 className='text-white row-title'> Balance </h6>
-          </div>
-
-          <div className="w-1/2">
-            <div className='btn-container flex justify-end'>
-              <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-[12px] shadow actor-font"
-               onClick={handlePaylink}> Create Paylink </button>
-            </div>
-          </div>
-      </div>
-
-      <div className='flex justify-center py-3'>
-        {/* Card containing the balance */}
-        <div className="balance-card overflow-hidden shadow-lg bg-white rounded-[12px]">
+        <div className="container-fluid bg-dark">
         
-            <BalanceComponent />
+        {/** Begining of the main icons */}
+        <div className="grid grid-cols-3 gap-4 p-4">
+        <div className="w-20 h-20 aspect-square bg-white rounded-lg shadow flex items-center justify-center
+                        cursor-pointer hover:bg-gray-100" onClick={handlePaylink}>
+        <Image src={birdIcon} className="w-12 h-12" alt="A bird icon"/>
+
         </div>
-        {/* End of card containing the card */}
-      </div>
-
-        <h6 className='text-white row-title py-6'> Lifestyle </h6>
-
-        {/* Card ? */}
-        <div className='flex justify-center py-3'>
-
-          <div className="flex justify-center text-white">
-            Add a goal!
-          </div>
-        </div>
-
-        <h6 className='text-white row-title'> Investments </h6>
-        <div className='flex justify-center py-4'>
-          {/* Card of staking */}
-          <div className='balance-card  rounded-[12px] bg-white text-center mb-5'>
-            
-            <h6 className='font-bold actor-font'> Staking - Under construction </h6>
-            <div className='flex'>
-             
-              <button className="btn-green hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-1 actor-font" 
-              onClick={handleStaking}>
-                Button
-              </button>
-
-             
-            </div>
-          </div>
-
+        <div className="w-20 h-20 aspect-square bg-white rounded-lg shadow flex items-center justify-center
+                        cursor-pointer hover:bg-gray-100" onClick={handleStaking}>
           
+          <Image src={ethIcon} className="w-12 h-12" alt="A coin icon" />
+        </div>
+        <div className="w-20 h-20 aspect-square bg-white rounded-lg shadow flex items-center justify-center">
+          <Image src={stockIcon} className="w-12 h-12" alt="A stocks icon"/>
+        </div>
+        <div className="w-20 h-20 aspect-square bg-white rounded-lg shadow flex items-center justify-center">
+          <Image src={goalsIcon} className="w-12 h-12" alt="A goals icon" />
+        </div>
+        <div className="w-20 h-20 aspect-square bg-white rounded-lg shadow flex items-center justify-center">
+          <Image src={myWallet} className="w-12 h-12" alt="A wallet icon"/>
+        </div>
+        <div className="w-20 h-20 aspect-square bg-gray-200 rounded-lg shadow flex items-center justify-center">
+          <span className="text-4xl">+</span>
+        </div>
+       </div>
+        {/** End of the main icons */}
+
+        {/** Begining of the container below */}
+        <div className="flex flex-col w-full max-w-md bg-white rounded-lg shadow-lg overflow-hidden">
+          {/** Balance container */}
+          <div className="flex rounded-xl m-4 border-2 border-black   flex justify-between items-center">
+            <BalanceComponent />
           </div>
+          {/** End of balance container */}
+
+          <div className="p-4 flex justify-between items-center">
+            <p> Movements </p>
+          </div>
+        </div>
+        {/** End of the container below  */}
+
+    
         </div>
         </>
     );

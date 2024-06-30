@@ -44,11 +44,11 @@ export default function HeaderComponent() {
   };  
 
   return (
-    <header className="sticky bg-white top-0 z-50 flex items-center justify-between px-8 py-4 rounded-2xl shadow-xl border-1 border-black">
+    <header className="sticky  top-0 z-50 flex items-center justify-between px-8 py-4 rounded-2xl  ">
 
     <Sheet>
       <SheetTrigger asChild>
-        <Button className="lg:hidden" size="icon" variant="outline">
+        <Button className="lg:hidden bg-dark text-white border-0 " size="icon" variant="outline">
           <MenuIcon className="h-6 w-6" />
           <span className="sr-only">Toggle navigation menu</span>
         </Button>
@@ -142,12 +142,7 @@ export default function HeaderComponent() {
     </Link>
 
     <Link className="items-center gap-2 flex lg:hidden" href="/">
-      <Image src={"/birdlypay.png"} alt="Birdlypay" 
-            width={0}
-            height={0}
-            sizes="100vw"
-            style={{ width: 'auto', height: '40px', margin: '5px'}}
-      />
+     <p className='text-white'> Gm, userName! </p>
     </Link>
 
     <NavigationMenu className="hidden lg:flex">
@@ -190,7 +185,7 @@ export default function HeaderComponent() {
       <ConnectButton
               client={thirdwebClient}
               wallets={wallets}
-              theme={"light"}
+              theme={"dark"}
               connectButton={{ label: "Start" }}
               connectModal={{
                 size: "compact",

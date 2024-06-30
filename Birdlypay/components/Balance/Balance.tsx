@@ -1,19 +1,12 @@
 "use client"
 
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import Image from "next/image";
-import { useRouter } from 'next/navigation';
-import { thirdwebClient } from "../../utils/thirdweb";
-import { baseSepolia, defineChain } from "thirdweb/chains";
-import {
-  ThirdwebProvider,
-  ConnectButton,
-} from "thirdweb/react";
-import { useConnect } from "thirdweb/react";
+
 import { useConnectedWallets } from "thirdweb/react";
 import { useState, useEffect } from 'react';
+import Image from "next/image";
 import { ethers } from 'ethers';
+import eyeIcon from './eye.png';
+import changeIcon from './change.png';
 
 interface BalanceComponentProps {
     onUsdBalanceChange?: (balance: string) => void;
@@ -24,6 +17,7 @@ export default function BalanceComponent({ onUsdBalanceChange }: BalanceComponen
   const [currency, setCurrency] = useState("ETH");
   const wallets = useConnectedWallets();
   const [usdValue, setUsdValue] = useState("0.00");
+  const [showUsd, setShowUsd] = useState(false);
 
   useEffect(() => {
     async function getEthPrice() {
@@ -53,8 +47,6 @@ export default function BalanceComponent({ onUsdBalanceChange }: BalanceComponen
             if (ethPrice) {
               const usdBalance = (parseFloat(formattedBalance) * ethPrice).toFixed(2);
               setUsdValue(usdBalance);
-              
-              // Aquí es donde pasamos el balance en USD al componente padre
               if (onUsdBalanceChange) {
                 onUsdBalanceChange(usdBalance);
               }
@@ -67,9 +59,13 @@ export default function BalanceComponent({ onUsdBalanceChange }: BalanceComponen
         }
       }
     }
-  
     getBalance();
   }, [wallets, onUsdBalanceChange]);
+
+  const toggleDisplay = () => {
+    setShowUsd(!showUsd);
+    setCurrency(showUsd ? "ETH" : "USD");
+  };
   
     if (wallets.length === 0) {
       return <div>Please connect your wallet</div>;
@@ -77,19 +73,20 @@ export default function BalanceComponent({ onUsdBalanceChange }: BalanceComponen
   
     
   return (
-    <div>
-      <div className="font-bold text-xl mb-2 actor-font">
-        {balanceValue}
-      </div>
-      <p className="text-gray-700 text-base actor-font">
-        Currency: {currency}
-      </p>
-
-      <br/> 
-      <p className="text-gray-700 text-base actor-font">
-      USD Value: ${usdValue}
-      </p>
-      
+    <div className="flex">
+    <div className='hide flex'>
+      <Image src={eyeIcon} className="w-6 h-6" alt='Eye icon'/>
+      <p> Hide balance </p>
     </div>
+    <p className="flex text-gray-700 text-base actor-font">
+    {showUsd ? `$${usdValue}` : `${balanceValue}`} {currency}
+      <Image 
+        src={changeIcon} 
+        className="w-6 h-6 cursor-pointer" 
+        alt='Change icon' 
+        onClick={toggleDisplay}
+      />
+    </p>
+  </div>
   );
 }

@@ -56,7 +56,7 @@ export default function Home() {
       { !(wallets.length>0) && (
         <LoginScreenComponent />
       )}
-      <div className='bg-black p-4'>
+      <div className='bg-dark p-4'>
       { (wallets.length>0) && (
         <HeaderComponent />
       )}
