@@ -130,7 +130,7 @@ export default function Payment() {
           />
           <h6 className='font-bold'> ETH </h6>
         </div>
-        <Dropdown />
+        {/* <Dropdown /> */}
       </div>
 
       <p className='text-white ml-8 mt-8'> Amount </p>
