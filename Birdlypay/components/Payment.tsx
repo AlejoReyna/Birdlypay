@@ -10,8 +10,11 @@ import Image from "next/image";
 import { createThirdwebClient, getContract, resolveMethod, ThirdwebContract } from "thirdweb";
 import { defineChain } from "thirdweb/chains";
 import { useReadContract } from "thirdweb/react";
-import { ConnectButton, ThirdwebProvider, TransactionButton } from "thirdweb/react";
-import { readContract } from "thirdweb";
+import { ConnectButton, ThirdwebProvider, TransactionButton, useSendTransaction } from "thirdweb/react";
+import { readContract, prepareContractCall } from "thirdweb";
+import { v4 as uuidv4 } from "uuid";
+import { inAppWallet } from "thirdweb/wallets";
+
 
 export const client = createThirdwebClient({
     clientId: process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID || "",
@@ -42,10 +45,15 @@ const PaymentComponent: React.FC<PaymentComponentProps> = ({ guid }) => {
     const [paymentTitle, setPaymentTitle] = useState("");
     const [paymentDescription, setPaymentDescription] = useState("");
     const [amount, setAmount] = useState("");
+    const [notes, setNotes] = useState("");
     const [receiverAddress, setReceiverAddress] = useState("");
     const [isPaid, setIsPaid] = useState(false);
+    const [paymentGuid, setPaymentGuid] = useState(uuidv4());
+    const { mutate: sendTransaction, isPending } = useSendTransaction();
+
 
     async function getPaymentDetails(guid: string) {
+
         const data = await readContract({ 
             contract, 
             method: "function getPaymentDetails(string guid) view returns (uint256, string, string, string, address, bool)", 
@@ -72,6 +80,22 @@ const PaymentComponent: React.FC<PaymentComponentProps> = ({ guid }) => {
         getPaymentDetails(guid);
     }
 
+    const payTransaction = prepareContractCall({ 
+        contract, 
+        method: "function makePayment(string guid, string notes) payable", 
+        params: [guid, notes],
+        value: BigInt(amount),
+      });
+
+    const onClickPayment = async () => {
+        const transactionResult = await sendTransaction(payTransaction);
+        console.log("transactionResult: ", transactionResult); 
+    };    
+
+    const handleSuccess = (receipt: any) => {
+        console.log("Payment link created successfully. receipt: ", receipt);
+    }
+    
 
     return (
         <div className='container-fluid bg-black h-screen'>
@@ -131,10 +155,22 @@ const PaymentComponent: React.FC<PaymentComponentProps> = ({ guid }) => {
             </div>
 
             <div className="w-full flex justify-center my-8">
+
                 <button className="bg-[#24F129] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-2xl"
+                    onClick={onClickPayment}
                 >
                     Pay!
                 </button>
+
+                {/* <TransactionButton
+                    transaction={() => payTransaction}
+                    onTransactionConfirmed={handleSuccess}
+                    unstyled
+                    className="bg-[#24F129] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-2xl"
+                    >
+                    Pay!
+                </TransactionButton> */}
+
             </div>
 
         </div>
