@@ -73,20 +73,22 @@ export default function BalanceComponent({ onUsdBalanceChange }: BalanceComponen
   
     
   return (
-    <div className="flex">
-    <div className='hide flex'>
-      <Image src={eyeIcon} className="w-6 h-6" alt='Eye icon'/>
-      <p> Hide balance </p>
-    </div>
-    <p className="flex text-gray-700 text-base actor-font">
-    {showUsd ? `$${usdValue}` : `${balanceValue}`} {currency}
-      <Image 
-        src={changeIcon} 
-        className="w-6 h-6 cursor-pointer" 
-        alt='Change icon' 
-        onClick={toggleDisplay}
-      />
-    </p>
+    <div className="flex justify-between items-center w-full">
+  <div className='hide flex items-center p-2'>
+    <Image src={eyeIcon} className="w-6 h-6" alt='Eye icon'/>
+    <p className="ml-2"> Hide balance </p>
   </div>
+  <div className="currency-value p-2 flex items-center">
+    <p className="flex text-gray-700 text-base actor-font">
+      {showUsd ? `$${usdValue}` : `${balanceValue}`} {currency}
+    </p>
+    <Image
+      src={changeIcon}
+      className="w-6 h-6 cursor-pointer ml-2"
+      alt='Change icon'
+      onClick={toggleDisplay}
+    />
+  </div>
+</div>
   );
 }

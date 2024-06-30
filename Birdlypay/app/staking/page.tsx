@@ -23,13 +23,13 @@ export default function Staking() {
 
   return (
     
-    <div className='container-fluid bg-black pb-24 h-screen'>
+    <div className='container-fluid bg-dark pb-24 h-screen'>
       {/* First row */}
       <div className='flex flex-col'>
           <div className="w-1/2">
             <div className='btn-container flex justify-start m-4'>
               <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-[12px] shadow actor-font"
-                onClick={handleHome}> Sexo </button>
+                onClick={handleHome}> Back </button>
             </div>
           </div>
           <div className="w-1/2 ml-4">
@@ -48,7 +48,7 @@ export default function Staking() {
           />
           <h6 className='font-bold align-middle	'> ETH </h6>
         </div>
-        <Dropdown />
+
       </div>
 
       <p className='text-white ml-8 mt-8'> Amount </p>

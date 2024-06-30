@@ -48,12 +48,12 @@ export default function HeaderComponent() {
 
     <Sheet>
       <SheetTrigger asChild>
-        <Button className="lg:hidden bg-dark text-white border-0 " size="icon" variant="outline">
+        <Button className="bg-dark text-white border-0 " size="icon" variant="outline">
           <MenuIcon className="h-6 w-6" />
           <span className="sr-only">Toggle navigation menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent className="w-100 bg-dark" side="left">
+      <SheetContent className="w-100 bg-dark text-white" side="left">
         <nav className="grid gap-2 py-4 ">
           
       {(wallets.length>0) ? (
@@ -132,14 +132,7 @@ export default function HeaderComponent() {
       </SheetContent>
     </Sheet>
 
-    <Link className="items-center gap-2 hidden lg:flex" href="/">
-      <Image src={"/logo1.png"} alt="Birdlypay" 
-            width={0}
-            height={0}
-            sizes="100vw"
-            style={{ width: 'auto', height: '50px', margin: '5px'}}
-      />
-    </Link>
+    
 
     <Link className="items-center gap-2 flex lg:hidden" href="/">
      <p className='text-white'> Gm, userName! </p>
@@ -148,34 +141,10 @@ export default function HeaderComponent() {
     <NavigationMenu className="hidden lg:flex">
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuLink
-            className="group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
-            href="/"
-          >
-            Home
-          </NavigationMenuLink>
+        <p className='text-white'> Gm, userName! </p>
         </NavigationMenuItem>
 
-      { (wallets.length>0) ? (
-        <>
-        <NavigationMenuItem>
-          <NavigationMenuLink
-            className="group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
-            href="/page1"
-          >
-            Page 1
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink
-            className="group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
-            href="/page2"
-          >
-            Page2
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-        </>
-      ): null}
+      
 
       </NavigationMenuList>
     </NavigationMenu>

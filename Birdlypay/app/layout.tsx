@@ -9,7 +9,6 @@ import {
 } from "thirdweb/react";
 
 
-import HomepageComponent from "@/components/Homepage/Homepage";
 
 // export const metadata: Metadata = {
 //   title: "Create Next App",

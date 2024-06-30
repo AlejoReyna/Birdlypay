@@ -36,17 +36,7 @@ const wallets = [
       options: "smartWalletOnly",
     },    
   }),
-  // inAppWallet({
-  //   auth: {
-  //     options: [
-  //       "email",
-  //       "google",
-  //       "apple",
-  //       "facebook",
-  //       "phone",
-  //     ],
-  //   },
-  // }),
+  
 ];
 
 export default function LoginScreenComponent() {
@@ -61,44 +51,6 @@ export default function LoginScreenComponent() {
       });
       await wallet.connect({
         client: thirdwebClient,
-        chain: defineChain(baseSepolia),
-      });
-      return wallet;
-    });
-  };
-
-  const handleGoogleLogin = async () => {
-    await connect(async () => {
-      const wallet = inAppWallet();
-      await wallet.connect({
-        client: thirdwebClient,
-        strategy: "google",
-        chain: defineChain(baseSepolia),
-      });
-      return wallet;
-    });
-  };
-
-  const handleFacebookLogin = async () => {
-    await connect(async () => {
-      const wallet = inAppWallet();
-      await wallet.connect({
-        client: thirdwebClient,
-        strategy: "facebook",
-        chain: defineChain(baseSepolia),
-      });
-      return wallet;
-    });
-  };
-
-  
-
-  const handleAppleLogin = async () => {
-    await connect(async () => {
-      const wallet = inAppWallet();
-      await wallet.connect({
-        client: thirdwebClient,
-        strategy: "apple",
         chain: defineChain(baseSepolia),
       });
       return wallet;
@@ -133,33 +85,6 @@ export default function LoginScreenComponent() {
     });
   };  
 
-  const prePhoneLogin = async (phoneNumber: string) => {
-    // send phone OTP code
-    await preAuthenticate({
-      strategy: "phone",
-      phoneNumber,
-      client: thirdwebClient,
-    });
-    const verificationCode = prompt("Enter your verificationCode");
-    if (verificationCode) {
-      await handlePhonelLogin(phoneNumber, verificationCode);
-    }
-  }  
-
-  const handlePhonelLogin = async (phoneNumber: string, verificationCode: string) => {
-    // verify phone and connect
-     await connect(async () => {
-       const wallet = inAppWallet();
-       await wallet.connect({
-         client: thirdwebClient,
-         strategy: "phone",
-         phoneNumber,
-         verificationCode,
-         chain: defineChain(baseSepolia),
-        });
-       return wallet;
-    });
-  }; 
 
   const handleContinueWithEmail = async () => {
     const email = prompt("Enter your email address");
@@ -168,16 +93,13 @@ export default function LoginScreenComponent() {
     }
   }
 
-  const handleContinueWithPhone = async () => {
-    const phoneNumber = prompt("Enter your phone number");
-    if (phoneNumber) {
-      await prePhoneLogin(phoneNumber);
-    }
-  };
+
 
     return (
-        <main className="bg-gif flex items-center justify-center h-screen p-8">
-         <div className="login-menu bg-new p-8 text-center rounded flex flex-col justify-center items-center h-full">
+
+        <main className="bg-gif flex justify-center">
+         <div className="login-menu bg-new rounded min-h-screen flex flex-col justify-center items-center">
+            
             <div className='logo-container flex justify-center'>
               <Image 
                 src="/logo.png"
@@ -188,10 +110,11 @@ export default function LoginScreenComponent() {
                 sizes="100vw"
                 style={{ width: '60%', height: 'auto'}} 
               />
+              
             </div>
               
             <div className='ad-text flex justify-center mb-8'>
-              <TypewriterEffect text="Welcome, start here!" delay={50} />
+              <TypewriterEffect text="Welcome, start here" delay={50} />
             </div>
 
             <div className='menu space-y-4'>

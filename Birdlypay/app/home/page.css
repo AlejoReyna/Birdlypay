@@ -1,4 +1,6 @@
-
+* {
+    font-family: "Actor", sans-serif;
+}
 .white-background {
     background-color: white;
 }
@@ -11,7 +13,6 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
-
 .bg-black {
     background: linear-gradient(to right, #1E1E1E, #222222);
 }
