@@ -21,6 +21,13 @@
     background-position: center;
 }
 
+.bg-dark {
+    background-image: url("./dark-bg.png");
+    background-size: cover;
+    background-position: center;
+    
+}
+
 .btn-container {
     margin-right: 10px;
 }

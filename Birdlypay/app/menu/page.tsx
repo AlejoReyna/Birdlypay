@@ -2,55 +2,15 @@
 
 import { useState } from 'react';
 import Image from "next/image";
-import Dropdown from "@/components/Dropdown"
+import Link from "next/link";
+import Dropdown from "@/components/Dropdown";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
 import { useRouter } from 'next/navigation';
-import { ethers } from 'ethers';
-import PaymentPage from '../paymentPage/page';
 
-export default function Payment() {
-  const router = useRouter();
-  const [paymentTitle, setPaymentTitle] = useState("");
-  const [paymentDescription, setPaymentDescription] = useState("");
-  const [amount, setAmount] = useState("");
-  const [paymentLink, setPaymentLink] = useState("");
-  const [address, setAddress] = useState("");
-
-  // Redirects to Homepage.tsx
-  const handleHome = () => {
-    router.push('/home');
-  }
-
-  const handleLink = () => {
-    router.push('/link');
-  }
-
-  const handleCreateLink = async () => {
-    if (!window.ethereum) {
-      alert("Please install MetaMask!");
-      return;
-    }
-
-    try {
-      // Request account access
-      await window.ethereum.request({ method: 'eth_requestAccounts' });
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const signer = provider.getSigner();
-      const address = await signer.getAddress();
-
-      // Create a unique identifier for this payment
-      const paymentId = ethers.utils.id(Date.now().toString() + address);
-
-      // Create the payment link
-      const link = `${window.location.origin}/paymentPage?title=${encodeURIComponent(paymentTitle)}&amount=${amount}&address=${address}`;
-
-
-      setPaymentLink(link);
-    } catch (error) {
-      console.error("Error creating payment link:", error);
-      alert("Error creating payment link. Please try again.");
-    }
-  }
-
+export default function LateralMenu() {
+  const [wallets, setWallets] = useState([]);
+ 
   return (
     <div className='flex flex-col bg-black h-max min-h-screen'>
       {/* First row */}

@@ -73,7 +73,6 @@ export default function Staking() {
           Stake
         </button>
       </div>
-
   </div>
 
 
