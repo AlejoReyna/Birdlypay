@@ -37,6 +37,7 @@ export default function Payment() {
     router.push('/home');
   }
 
+  const [isLinkCreated, setIsLinkCreated] = useState(false);
 
   const transaction = prepareContractCall({
     contract,
@@ -81,13 +82,10 @@ export default function Payment() {
 
   const handleSuccess = (receipt: any) => {
     console.log("Payment link created successfully. receipt: ", receipt);
-
-    //const link = `${window.location.origin}/receiverPage?title=${encodeURIComponent(paymentTitle)}&amount=${amount}&address=${address}`;
     const link = `${window.location.origin}/receiverPage?guid=${paymentGuid}`;
     // Set the payment link in the state
     setPaymentLink(link);
-    // Navigate to the paymentLink page with the generated link
-    //router.push(link);
+    setIsLinkCreated(true); // Updates the status to hide the inputs 
   }
 
   return (
@@ -109,6 +107,8 @@ export default function Payment() {
           <h6 className='text-white text-3xl'> PayLink </h6>
         </div>
       </div>
+      {!isLinkCreated && (
+          <>
       <p className='text-white ml-8 mt-8'> Payment title </p>
 
       {/** Here must go the payment title */}
@@ -178,8 +178,10 @@ export default function Payment() {
         </TransactionButton>
 
       </div>
+      </>
+      )}
 
-      {paymentLink && (
+      {isLinkCreated && (
         <div className="mx-8 mt-4 p-4 bg-white rounded-xl">
           <p>Your payment link:</p>
           <a href={paymentLink} target="_blank" rel="noopener noreferrer" className="text-blue-500 break-all">
