@@ -5,7 +5,7 @@ import {
   clearStore,
   beforeAll,
   afterAll
-} from "matchstick-as/assembly/index"
+} from "matchstick-as"
 import { Address, BigInt } from "@graphprotocol/graph-ts"
 import { OwnershipTransferred } from "../generated/schema"
 import { OwnershipTransferred as OwnershipTransferredEvent } from "../generated/PaymentLink/PaymentLink"
