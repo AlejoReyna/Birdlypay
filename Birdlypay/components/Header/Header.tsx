@@ -1,7 +1,7 @@
 "use client"
 
 import './Header.css';
-
+import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { SheetTrigger, SheetContent, Sheet } from "@/components/ui/sheet";
 import Link from "next/link";
@@ -9,8 +9,9 @@ import { NavigationMenuLink, NavigationMenuItem, NavigationMenuList, NavigationM
 import { DropdownMenuTrigger, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuContent, DropdownMenu } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
-
-
+import greenBird from './g-bird.jpeg';
+import pinkBird from './p-bird.jpeg';
+import purpleBird from './pp-bird.jpeg';
 import { thirdwebClient } from "../../utils/thirdweb";
 import { baseSepolia, defineChain } from "thirdweb/chains";
 
@@ -21,9 +22,10 @@ import {
 
 import { useConnect,  } from "thirdweb/react";
 import { useConnectedWallets } from "thirdweb/react";
-import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
 
 export default function HeaderComponent() {
+  const [currentBirdIndex, setCurrentBirdIndex] = useState(0);
+  const birdImages = [greenBird, pinkBird, purpleBird];
 
   const handleMyProfile = () => {
 
@@ -43,6 +45,16 @@ export default function HeaderComponent() {
     router.push('/'); // Redirect to the login page after 3 seconds
   };  
 
+  const changeBirdImage = (direction) => {
+    setCurrentBirdIndex((prevIndex) => {
+      if (direction === 'next') {
+        return (prevIndex + 1) % birdImages.length;
+      } else {
+        return (prevIndex - 1 + birdImages.length) % birdImages.length;
+      }
+    });
+  };
+
   return (
     <header className="sticky  top-0 z-50 flex items-center justify-between px-8 py-4 rounded-2xl  ">
 
@@ -59,13 +71,22 @@ export default function HeaderComponent() {
       {(wallets.length>0) ? (
         <>
         <div>
-         <div className='flex justify-center mt-8'>
-          <img
-            className="inline-block h-16 w-16 rounded-full ring-2 ring-white"
-            src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-            alt=""
-          />
-        </div>
+        <div className='flex flex-col items-center mt-8'>
+                    <div className="flex items-center">
+                      <Button onClick={() => changeBirdImage('prev')} className="mr-2">
+                        &#8592; {/* Left arrow */}
+                      </Button>
+                      <Image
+                        className="inline-block h-16 w-16 rounded-full ring-2 ring-white"
+                        src={birdImages[currentBirdIndex]}
+                        alt=""
+                      />
+                      <Button onClick={() => changeBirdImage('next')} className="ml-2">
+                        &#8594; {/* Right arrow */}
+                      </Button>
+                    </div>
+                  </div>
+
         <p className='mt-2 text-white text-center'> Account </p>
       <p className='mt-4 text-white text-xl text-center italic'> yourUserName </p>
       <p className='mt-4 text-blue-700 text-center cursor-pointer'> Edit profile </p>

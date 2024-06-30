@@ -1,16 +1,15 @@
 "use client"
-
-
 import { useConnectedWallets } from "thirdweb/react";
 import { useState, useEffect } from 'react';
 import Image from "next/image";
 import { ethers } from 'ethers';
 import eyeIcon from './eye.png';
 import changeIcon from './change.png';
+import eyeIcon2 from './eye-2.png';
 
 interface BalanceComponentProps {
-    onUsdBalanceChange?: (balance: string) => void;
-  }
+  onUsdBalanceChange?: (balance: string) => void;
+}
 
 export default function BalanceComponent({ onUsdBalanceChange }: BalanceComponentProps) {
   const [balanceValue, setBalanceValue] = useState("0.000");
@@ -18,6 +17,7 @@ export default function BalanceComponent({ onUsdBalanceChange }: BalanceComponen
   const wallets = useConnectedWallets();
   const [usdValue, setUsdValue] = useState("0.00");
   const [showUsd, setShowUsd] = useState(false);
+  const [hideBalance, setHideBalance] = useState(false);
 
   useEffect(() => {
     async function getEthPrice() {
@@ -30,7 +30,7 @@ export default function BalanceComponent({ onUsdBalanceChange }: BalanceComponen
         return null;
       }
     }
-  
+
     async function getBalance() {
       if (wallets.length > 0) {
         try {
@@ -42,7 +42,7 @@ export default function BalanceComponent({ onUsdBalanceChange }: BalanceComponen
             const formattedBalance = ethers.utils.formatEther(balance);
             setBalanceValue(parseFloat(formattedBalance).toFixed(3));
             setCurrency("ETH");
-  
+
             const ethPrice = await getEthPrice();
             if (ethPrice) {
               const usdBalance = (parseFloat(formattedBalance) * ethPrice).toFixed(2);
@@ -59,6 +59,7 @@ export default function BalanceComponent({ onUsdBalanceChange }: BalanceComponen
         }
       }
     }
+
     getBalance();
   }, [wallets, onUsdBalanceChange]);
 
@@ -66,29 +67,34 @@ export default function BalanceComponent({ onUsdBalanceChange }: BalanceComponen
     setShowUsd(!showUsd);
     setCurrency(showUsd ? "ETH" : "USD");
   };
-  
-    if (wallets.length === 0) {
-      return <div>Please connect your wallet</div>;
-    }
-  
-    
+
+  const toggleHideBalance = () => {
+    setHideBalance(!hideBalance);
+  };
+
+  if (wallets.length === 0) {
+    return <div>Please connect your wallet</div>;
+  }
+
+  const displayBalance = hideBalance ? "******" : (showUsd ? `$${usdValue}` : `${balanceValue}`);
+
   return (
     <div className="flex justify-between items-center w-full">
-  <div className='hide flex items-center p-2'>
-    <Image src={eyeIcon} className="w-6 h-6" alt='Eye icon'/>
-    <p className="ml-2"> Hide balance </p>
-  </div>
-  <div className="currency-value p-2 flex items-center">
-    <p className="flex text-gray-700 text-base actor-font">
-      {showUsd ? `$${usdValue}` : `${balanceValue}`} {currency}
-    </p>
-    <Image
-      src={changeIcon}
-      className="w-6 h-6 cursor-pointer ml-2"
-      alt='Change icon'
-      onClick={toggleDisplay}
-    />
-  </div>
-</div>
+      <div className='hide flex items-center p-2 cursor-pointer' onClick={toggleHideBalance}>
+        <Image src={hideBalance ? eyeIcon2 : eyeIcon} className="w-6 h-6" alt='Eye icon'/>
+        <p className="ml-2">{hideBalance ? "Show balance" : "Hide balance"}</p>
+      </div>
+      <div className="currency-value p-2 flex items-center">
+        <p className="flex text-gray-700 text-base actor-font">
+          {displayBalance} {currency}
+        </p>
+        <Image
+          src={changeIcon}
+          className="w-6 h-6 cursor-pointer ml-2"
+          alt='Change icon'
+          onClick={toggleDisplay}
+        />
+      </div>
+    </div>
   );
 }

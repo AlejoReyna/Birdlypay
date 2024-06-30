@@ -59,9 +59,9 @@ export default function HomepageComponent () {
         {/** End of the main icons */}
 
         {/** Begining of the container below */}
-        <div className="flex flex-col bg-white min-h-screen rounded-lg shadow-lg overflow-hidden">
+        <div className="flex flex-col bg-white min-h-screen rounded-3xl shadow-lg overflow-hidden">
           {/** Balance container */}
-          <div className="flex shadow-md rounded-xl m-4   flex justify-between items-center">
+          <div className="flex shadow-xl rounded-full m-4   flex justify-between items-center">
             <BalanceComponent />
           </div>
           {/** End of balance container */}
