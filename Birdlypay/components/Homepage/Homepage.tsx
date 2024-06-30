@@ -7,6 +7,7 @@ import ethIcon from './eth.png';
 import stockIcon from './stock.png';
 import goalsIcon from './goals.png';
 import birdIcon from './bird.png';
+import { ChevronUpIcon } from '@heroicons/react/24/solid';
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
@@ -22,6 +23,7 @@ export default function HomepageComponent() {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(true);
   
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const handleStaking = () => {
     router.push('/staking');
@@ -74,29 +76,12 @@ export default function HomepageComponent() {
         </div>
         {/** End of the main icons */}
 
-        {/** Begining of the container below /}
-        <div className="flex flex-col bg-white min-h-screen rounded-3xl shadow-lg overflow-hidden">
-          {/** Balance container /}
-          <div className="flex shadow-xl rounded-full m-4   flex justify-between items-center">
-            <BalanceComponent />
-          </div>
-          {/** End of balance container /}
-
-          <div className="p-4 flex justify-between items-center">
-            <p> Movements </p>
-            <hr></hr>
-            <hr></hr>
-          </div>
-        </div>
-        {/** End of the container below  */}
-
-        <div className="relative">
-          <Button className="fixed bottom-0 left-0 right-0 m-4" onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? "Hide balance" : "Show balance"}
-          </Button>
+      
+      {/** Begining of card below icons  */}
+      <div className="relative">
+          
           <div
-            className={`fixed bottom-0 left-0 right-0 transition-transform transform ${isOpen ? "translate-y-0" : "translate-y-full"
-              }`}
+            
           >
             <Card className="p-4 bg-white rounded-t-lg shadow-lg">
               <CardHeader className="flex justify-between items-center">
@@ -116,26 +101,6 @@ export default function HomepageComponent() {
                     view all
                   </Button>
                 </div>
-
-                {/* <div className="space-y-4">
-                  <div>
-                    <p className="font-semibold">I collected birdly coins for paying...</p>
-                    <p className="text-sm text-muted-foreground">June 02, 2024 - 8:10 am - Amazon Prime</p>
-                    <p className="text-sm text-green-500">+0.5 $Birdly</p>
-                  </div>
-                  <hr />
-                  <div>
-                    <p className="font-semibold">Received 0.0004 Eth of Pedrito</p>
-                    <p className="text-sm text-muted-foreground">April 17, 2024 - 5:00 pm - Thank u!!</p>
-                    <p className="text-sm text-green-500">+0.0004 ETH</p>
-                  </div>
-                  <hr />
-                  <div>
-                    <p className="font-semibold">I paid for a membership of X</p>
-                    <p className="text-sm text-muted-foreground">April 04, 2024 - 10:20 am - X Premium</p>
-                    <p className="text-sm text-pink-500">-0.0058 ETH</p>
-                  </div>
-                </div> */}
 
                 <UserTransactionsComponent />
 
