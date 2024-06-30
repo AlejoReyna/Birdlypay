@@ -14,11 +14,14 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 
 import './Homepage.css';
+import { User } from "lucide-react";
+import UserTransactionsComponent from "../UserTransactions";
 
 export default function HomepageComponent() {
 
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(true);
+  
 
   const handleStaking = () => {
     router.push('/staking');
@@ -39,19 +42,19 @@ export default function HomepageComponent() {
                           cursor-pointer hover:bg-gray-100"
             onClick={handlePaylink}>
             <Image src={birdIcon} className="w-12 h-12" alt="A bird icon" />
-            <text className="italic">Paylink</text>
+            <p className="italic">Paylink</p>
           </div>
 
           <div className="flex flex-col w-24 h-24 aspect-square bg-white rounded-lg shadow items-center justify-center
                           cursor-pointer hover:bg-gray-100" onClick={handleStaking}>
 
             <Image src={ethIcon} className="w-12 h-12" alt="A coin icon" />
-            <text className="italic">Staking</text>
+            <p className="italic">Staking</p>
           </div>
 
           <div className="flex flex-col w-24 h-24 aspect-square bg-white rounded-lg shadow items-center justify-center">
             <Image src={stockIcon} className="w-12 h-12" alt="A stocks icon" />
-            <text className="italic">Stocks</text>
+            <p className="italic">Stocks</p>
           </div>
 
         </div>
@@ -59,11 +62,11 @@ export default function HomepageComponent() {
         <div className="flex justify-center gap-4 p-4">
           <div className="flex flex-col w-24 h-24 aspect-square bg-white rounded-lg shadow items-center justify-center">
             <Image src={goalsIcon} className="w-12 h-12" alt="A goals icon" />
-            <text className="italic">Goals</text>
+            <p className="italic">Goals</p>
           </div>
           <div className="flex flex-col w-24 h-24 aspect-square bg-white rounded-lg shadow items-center justify-center">
             <Image src={myWallet} className="w-12 h-12" alt="A wallet icon" />
-            <text className="italic">Wallet</text>
+            <p className="italic">Wallet</p>
           </div>
           <div className="flex flex-col w-24 h-24 aspect-square bg-gray-200 rounded-lg shadow items-center justify-center">
             <span className="text-4xl">+</span>
@@ -106,13 +109,15 @@ export default function HomepageComponent() {
 
               </CardHeader>
               <CardContent>
+
                 <div className="flex justify-between items-center mb-4">
                   <Label className="text-xl font-bold text-blue-600">Movements</Label>
                   <Button variant="link" className="text-blue-600">
                     view all
                   </Button>
                 </div>
-                <div className="space-y-4">
+
+                {/* <div className="space-y-4">
                   <div>
                     <p className="font-semibold">I collected birdly coins for paying...</p>
                     <p className="text-sm text-muted-foreground">June 02, 2024 - 8:10 am - Amazon Prime</p>
@@ -130,7 +135,10 @@ export default function HomepageComponent() {
                     <p className="text-sm text-muted-foreground">April 04, 2024 - 10:20 am - X Premium</p>
                     <p className="text-sm text-pink-500">-0.0058 ETH</p>
                   </div>
-                </div>
+                </div> */}
+
+                <UserTransactionsComponent />
+
               </CardContent>
               <div className="flex justify-around mt-4">
                 <Button className="bg-blue-600 text-white flex items-center">
