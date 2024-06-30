@@ -1,0 +1,32 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: PaymentLink
+    network: base-sepolia
+    source:
+      address: "0xDa69fDb6F12031620ec53120B6CB47D703647792"
+      abi: PaymentLink
+      startBlock: 12001088
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - OwnershipTransferred
+        - PaymentLinkCreated
+        - PaymentMade
+      abis:
+        - name: PaymentLink
+          file: ./abis/PaymentLink.json
+      eventHandlers:
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: PaymentLinkCreated(indexed address,uint256,string,string,indexed string)
+          handler: handlePaymentLinkCreated
+        - event: PaymentMade(indexed address,indexed address,uint256,uint256,indexed string,string)
+          handler: handlePaymentMade
+      file: ./src/payment-link.ts
