@@ -98,7 +98,7 @@ export default function LoginScreenComponent() {
     return (
 
         <main className="bg-gif flex justify-center">
-         <div className="login-menu bg-new rounded min-h-screen flex flex-col justify-center items-center">
+         <div className="login-menu bg-new m-4 rounded min-h-screen flex flex-col justify-center items-center">
             
             <div className='logo-container flex justify-center'>
               <Image 
@@ -113,24 +113,25 @@ export default function LoginScreenComponent() {
               
             </div>
               
-            <div className='ad-text flex justify-center mb-8'>
-              <TypewriterEffect text="Welcome, start here" delay={50} />
+            <div className='flex justify-center mb-8'>
+             <p className=' birdlyLogo text-white text-center'> Create easy paylinks without worrying about addresses. 
+              <br/>Easily manage your finance. </p>
             </div>
 
             <div className='menu space-y-4'>
     
-              <Button className='loginBtn fixedWidth' onClick={handleContinueWithEmail}> 
+              <Button className='loginBtn fixedWidth animated-button button-email' onClick={handleContinueWithEmail}> 
                 <Image className="loginImg"src={emailIcon} alt="Email icon"/> 
                 Continue with Email
               </Button>
                <br/>
 
-              <Button className='loginBtn fixedWidth' onClick={handleCoinbaseLogin}>
+              <Button className='loginBtn fixedWidth animated-button button-coinbase' onClick={handleCoinbaseLogin}>
                 <Image className='loginImg' src={baseIcon} alt="Base icon"/>
                 Continue with BaseWallet 
               </Button> 
 
-              <div className='specialBtn fixedWidth'>
+              <div className='specialBtn fixedWidth nimated-button button-wallet'>
                 <ConnectButton 
                   client={thirdwebClient} 
                   wallets={wallets} 

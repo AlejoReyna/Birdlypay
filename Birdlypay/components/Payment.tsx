@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
 import axios from 'axios';
-
+import './Payment.css';
 import { useActiveAccount } from "thirdweb/react";
-
+import birdLogo from './logo.png';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Image from "next/image";
 //import { useRouter } from 'next/router';
@@ -31,6 +31,8 @@ interface PaymentComponentProps {
 }
 
 const PaymentComponent: React.FC<PaymentComponentProps> = ({ guid }) => {
+
+    const [paymentComplete, setPaymentComplete] = useState(false);
 
     console.log("guid: ", guid);
 
@@ -90,15 +92,25 @@ const PaymentComponent: React.FC<PaymentComponentProps> = ({ guid }) => {
     const onClickPayment = async () => {
         const transactionResult = await sendTransaction(payTransaction);
         console.log("transactionResult: ", transactionResult); 
+        setPaymentComplete(true);
     };    
 
-    const handleSuccess = (receipt: any) => {
-        console.log("Payment link created successfully. receipt: ", receipt);
+    if (paymentComplete) {
+        return (
+            <div className='container-fluid bg-dark h-screen flex flex-col items-center justify-center text-white'>
+                <h1 className='text-4xl mb-4 text-center'>Thanks for using </h1>
+                <Image src={birdLogo} alt="Birdlypay logo" className='bird-logo'/>
+                
+                <p className='text-sm text-center text-xl m-4'>Did you know that creating a payment link in crypto is as easy as doing a few clicks? </p>
+                    <br/> <button className="bg-blue-600 text-white p-2 rounded flex items-center"> Create yours now! </button>
+            </div>
+        );
     }
+
     
 
     return (
-        <div className='container-fluid bg-black h-screen'>
+        <div className='container-fluid bg-dark h-screen'>
             {/* First row */}
             <div className='flex flex-col'>
                 <div className="w-full flex justify-between p-4">
@@ -130,7 +142,7 @@ const PaymentComponent: React.FC<PaymentComponentProps> = ({ guid }) => {
                         width={0}
                         height={0}
                         sizes="100vw"
-                        style={{ width: 'auto', height: '50px', margin: '5px' }}
+                        style={{ width: 'auto', height: '25px', margin: '5px' }}
                     />
                     <h6 className='font-bold align-middle'> Payment in ETH </h6>
                 </div>
@@ -161,15 +173,6 @@ const PaymentComponent: React.FC<PaymentComponentProps> = ({ guid }) => {
                 >
                     Pay!
                 </button>
-
-                {/* <TransactionButton
-                    transaction={() => payTransaction}
-                    onTransactionConfirmed={handleSuccess}
-                    unstyled
-                    className="bg-[#24F129] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-2xl"
-                    >
-                    Pay!
-                </TransactionButton> */}
 
             </div>
 

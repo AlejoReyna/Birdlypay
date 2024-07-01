@@ -1,0 +1,14 @@
+* {
+    font-family: "Actor", sans-serif;
+}
+.bg-dark {
+    background-image: url("./new-bg.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    
+}
+
+.bird-logo {
+    width: 50%;
+}
