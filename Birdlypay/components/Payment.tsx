@@ -26,11 +26,14 @@ export const contract = getContract({
     address: "0xDa69fDb6F12031620ec53120B6CB47D703647792"
 });
 
-interface PaymentComponentProps {
-    guid: string;
-}
+// interface PaymentComponentProps {
+//     guid: string;
+// }
 
-const PaymentComponent: React.FC<PaymentComponentProps> = ({ guid }) => {
+const PaymentComponent: React.FC = () => {
+
+    const searchParams = useSearchParams();
+    const [guid, setGuid] = useState(searchParams.get('guid')||"");    
 
     const [paymentComplete, setPaymentComplete] = useState(false);
 
