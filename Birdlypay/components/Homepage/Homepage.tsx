@@ -51,20 +51,20 @@ export default function HomepageComponent() {
                           cursor-pointer hover:bg-gray-100"
             onClick={handlePaylink}>
             <Image src={chainIcon} className="w-12 h-12" alt="A bird icon" />
-            <p className="italic">Paylink</p>
+            <p className="italic  text-xs">Paylink</p>
           </div>
 
           <div className="flex flex-col w-24 h-24 aspect-square bg-white rounded-lg shadow items-center justify-center
                           cursor-pointer hover:bg-gray-100" onClick={handleStaking}>
 
             <Image src={stakingIcon} className="w-12 h-12" alt="A coin icon" />
-            <p className="italic">My staking</p>
+            <p className="italic  text-xs">Staking</p>
           </div>
 
           <div className="flex flex-col w-24 h-24 aspect-square bg-white rounded-lg shadow items-center justify-center"
           onClick={handleMarket}>
             <Image src={marketIcon} className="w-12 h-12" alt="A stocks icon" />
-            <p className="italic">Birdly Market</p>
+            <p className="italic text-xs">Birdly Market </p>
           </div>
 
         </div>
@@ -73,15 +73,15 @@ export default function HomepageComponent() {
           <div className="flex flex-col w-24 h-24 aspect-square bg-white rounded-lg shadow items-center justify-center
            cursor-pointer hover:bg-gray-100" onClick={handleGoals}>
             <Image src={goalsIcon} className="w-12 h-12" alt="A goals icon" />
-            <p className="italic">Goals</p>
+            <p className="italic  text-xs">Goals</p>
           </div>
           <div className="flex flex-col w-24 h-24 aspect-square bg-white rounded-lg shadow items-center justify-center"
           onClick={handleMarket}>
             <Image src={myWallet} className="w-12 h-12" alt="A wallet icon" />
-            <p className="italic">Wallets</p>
+            <p className="italic  text-xs">Wallets</p>
           </div>
           <div className="flex flex-col w-24 h-24 aspect-square bg-gray-200 rounded-lg shadow items-center justify-center">
-            <span className="text-4xl">+</span>
+            <span className="text-4xl  text-xs">+</span>
           </div>
         </div>
         {/** End of the main icons */}

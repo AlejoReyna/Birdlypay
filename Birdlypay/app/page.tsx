@@ -14,7 +14,7 @@ export default function Home() {
   };
 
   useEffect(() => {
-      router.push('/home'); // Redirect to the login page after 3 seconds
+      router.push('/landingPage'); // Redirect to the login page after 3 seconds
   }, [router]);
 
   return (
