@@ -119,32 +119,7 @@ export default function SetGoal() {
       </div>
       {/** End of payment title input */}
       <p className='text-white ml-8 mt-8'> Amount </p>
-      <div className="flex justify-between items-center mx-8 mt-4">
-        <div className="flex justify-between items-center py-2 px-4 bg-white rounded-xl">
-          <div className="flex justify-between items-center ">
-            <Image src={"/eth.png"} alt="Birdlypay"
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{ width: 'auto', height: '25px', margin: '5px' }}
-            />
-            <h6 className='font-bold'> ETH </h6>
-          </div>
-          <Dropdown />
-        </div>
-        <div className="flex justify-between items-center py-2 px-4 bg-white rounded-xl">
-          <div className="flex justify-between items-center ">
-            <Image src={"/eth.png"} alt="Birdlypay"
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{ width: 'auto', height: '25px', margin: '5px' }}
-            />
-            <h6 className='font-bold'> Base </h6>
-          </div>
-          <Dropdown />
-        </div>
-      </div>
+      
       <div className="flex justify-between items-center mx-8 mt-4 px-4 py-1 bg-white rounded-xl">
         <div className="flex items-center">
           <p className="mr-2"> $ </p>
@@ -174,19 +149,13 @@ export default function SetGoal() {
       </div>
 
       <div className="flex justify-center mt-8 mb-20">
-        {/* <button className="bg-[#24F129] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-2xl"
-          onClick={handleCreateLink}>
-          Create
-        </button> */}
+     
 
-        <TransactionButton
-          transaction={() => transaction}
-          onTransactionConfirmed={handleSuccess}
-          unstyled
+        <button
           className="bg-[#24F129] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-2xl"
         >
           Create
-        </TransactionButton>
+        </button>
       </div>
     </div>
 
