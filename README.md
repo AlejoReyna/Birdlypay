@@ -1,5 +1,8 @@
-# OnChainSummer Birdlypay
+# OnChainSummer project: Birdlypay
 ![Birdly Pay Banner](./BIRDLY_PAY_BANNER.jpg)
+
+Discover the most practical way to use crypto, organize, set goals, access incredible promotions and more benefits.
+
 Create the enviroment file:
 Go to /Birdlypay folder and run:
 
