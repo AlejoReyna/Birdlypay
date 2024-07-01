@@ -29,21 +29,30 @@ export default function SetGoal() {
   const [paymentLink, setPaymentLink] = useState("");
   const [address, setAddress] = useState("");
   const newGuid: string = uuidv4();
-
+  const [deadline, setDeadline] = useState("");
   // Redirects to Homepage.tsx
   const handleHome = () => {
     router.push('/home');
   }
 
- 
+  const handleGoals = () => {
+    router.push('/myGoals')
+  }
 
-
-  const transaction = prepareContractCall({
-    contract,
-    method: "function createPaymentLink(uint256 amount, string title, string guid)",
-    params: [BigInt(amount), paymentTitle, newGuid]
-
-  });
+  const handleSaveGoal = () => {
+    const newGoal = {
+      id: newGuid,
+      title: paymentTitle,
+      amount: amount,
+      deadline: deadline, // You need to add a state for deadline
+      address: address
+    };
+  
+    const existingGoals = JSON.parse(localStorage.getItem('goals') || '[]');
+    existingGoals.push(newGoal);
+    localStorage.setItem('goals', JSON.stringify(existingGoals));
+    router.push('/myGoals');
+  };
 
   const readWalletInfo = async (data: any) => {
     console.log("Wallet connected: ", data);
@@ -51,41 +60,7 @@ export default function SetGoal() {
     console.log("Address: ", account?.address);
     setAddress(account?.address);
   }
-  const handleCreateLink = async () => {
-    if (!window.ethereum) {
-      alert("Please install MetaMask!");
-      return;
-    }
-
-    try {
-      // Request account access
-      await window.ethereum.request({ method: 'eth_requestAccounts' });
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const signer = provider.getSigner();
-      const address = await signer.getAddress();
-
-      // Create a unique identifier for this payment
-      const paymentId = ethers.utils.id(Date.now().toString() + address);
-
-      // Create the payment link
-      const link = `${window.location.origin}/paymentPage?title=${encodeURIComponent(paymentTitle)}&amount=${amount}&address=${address}`;
-
-
-      setPaymentLink(link);
-    } catch (error) {
-      console.error("Error creating payment link:", error);
-      alert("Error creating payment link. Please try again.");
-    }
-  }
-
-  const handleSuccess = (receipt: any) => {
-    console.log("Payment link created successfully. receipt: ", receipt);
-    const link = `${window.location.origin}/paymentLink?title=${encodeURIComponent(paymentTitle)}&amount=${amount}&address=${address}`;
-    // Set the payment link in the state
-    setPaymentLink(link);
-    // Navigate to the paymentLink page with the generated link
-    router.push(link);
-  }
+  
   return (
     <div className='flex flex-col bg-dark h-max min-h-screen'>
       {/* First row */}
@@ -94,7 +69,7 @@ export default function SetGoal() {
         <div className="w-full flex justify-between p-4">
           <div className='btn-container justify-start m-4'>
             <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-[12px] shadow actor-font"
-              onClick={handleHome}> Back </button>
+              onClick={handleGoals}> Back </button>
           </div>
           <div className='justify-end m-4'>
             <ConnectButton client={client} onConnect={readWalletInfo} />
@@ -138,24 +113,25 @@ export default function SetGoal() {
 
       <div className="flex justify-between items-center mx-8 mt-4 px-4 py-1 bg-white rounded-xl">
         <div className="flex items-center">
-          <input
-            style={{ width: '80%', outline: 'none' }}
-            type='date'
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            className='p-2 text-center'
-          />
+        <input
+          style={{ width: '80%', outline: 'none' }}
+          type='date'
+          value={deadline}
+          onChange={(e) => setDeadline(e.target.value)}
+          className='p-2 text-center'
+        />
         </div>
       </div>
 
       <div className="flex justify-center mt-8 mb-20">
      
 
-        <button
-          className="bg-[#24F129] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-2xl"
-        >
-          Create
-        </button>
+      <button
+  className="bg-[#24F129] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-2xl"
+  onClick={handleSaveGoal}
+>
+  Save goal
+</button>
       </div>
     </div>
 
