@@ -6,7 +6,7 @@ import myWallet from './my-wallet.png';
 import stakingIcon from './stake.png';
 import marketIcon from './market.png';
 import goalsIcon from './star.png';
-import birdIcon from './bird.png';
+import chainIcon from './chain.png';
 import { ChevronUpIcon } from '@heroicons/react/24/solid';
 
 import { useState } from "react"
@@ -26,7 +26,7 @@ export default function HomepageComponent() {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleGoals = () => {
-    router.push('/setGoal');
+    router.push('/myGoals');
   }
 
   const handleStaking = () => {
@@ -47,7 +47,7 @@ export default function HomepageComponent() {
           <div className="flex flex-col w-24 h-24 aspect-square bg-white rounded-lg shadow items-center justify-center
                           cursor-pointer hover:bg-gray-100"
             onClick={handlePaylink}>
-            <Image src={birdIcon} className="w-12 h-12" alt="A bird icon" />
+            <Image src={chainIcon} className="w-12 h-12" alt="A bird icon" />
             <p className="italic">Paylink</p>
           </div>
 
@@ -55,12 +55,12 @@ export default function HomepageComponent() {
                           cursor-pointer hover:bg-gray-100" onClick={handleStaking}>
 
             <Image src={stakingIcon} className="w-12 h-12" alt="A coin icon" />
-            <p className="italic">Staking</p>
+            <p className="italic">My staking</p>
           </div>
 
           <div className="flex flex-col w-24 h-24 aspect-square bg-white rounded-lg shadow items-center justify-center">
             <Image src={marketIcon} className="w-12 h-12" alt="A stocks icon" />
-            <p className="italic">Stocks</p>
+            <p className="italic">Birdly Market</p>
           </div>
 
         </div>
@@ -73,7 +73,7 @@ export default function HomepageComponent() {
           </div>
           <div className="flex flex-col w-24 h-24 aspect-square bg-white rounded-lg shadow items-center justify-center">
             <Image src={myWallet} className="w-12 h-12" alt="A wallet icon" />
-            <p className="italic">Wallet</p>
+            <p className="italic">Wallets</p>
           </div>
           <div className="flex flex-col w-24 h-24 aspect-square bg-gray-200 rounded-lg shadow items-center justify-center">
             <span className="text-4xl">+</span>

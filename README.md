@@ -1,5 +1,5 @@
 # OnChainSummer Birdlypay
-
+![Birdly Pay Banner](./BIRDLY_PAY_BANNER.jpg)
 Create the enviroment file:
 Go to /Birdlypay folder and run:
 

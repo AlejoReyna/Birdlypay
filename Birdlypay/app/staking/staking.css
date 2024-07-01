@@ -1,0 +1,15 @@
+.balance-wrapper {
+    display: flex;
+    align-items: center;
+    color: white;
+  }
+  
+  .balance-wrapper > div {
+    display: flex;
+    align-items: center;
+  }
+  
+  .balance-wrapper .hide,
+  .balance-wrapper p:not(.actor-font) {
+    display: none;
+  }

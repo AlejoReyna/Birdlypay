@@ -110,9 +110,7 @@ export default function HeaderComponent() {
       className="bg-transparent border-b border-white text-white text-center"
       placeholder="Enter username"
     />
-    <button onClick={handleSaveUsername} className="ml-2 text-blue-500">
-      Save
-    </button>
+  
   </div>
 ) : (
   <p className='mt-4 text-white text-xl text-center italic'>
@@ -120,7 +118,7 @@ export default function HeaderComponent() {
   </p>
 )}
 <p className='mt-4 text-blue-700 text-center cursor-pointer' onClick={() => setIsEditing(!isEditing)}>
-  {isEditing ? 'Cancel' : 'Edit profile'}
+  {isEditing ? 'Save' : 'Edit profile'}
 </p>
       <div className='ml-8 mt-8'>
         <div className="flex mt-2 py-2 px-4 rounded-xl cursor-pointer text-white">
