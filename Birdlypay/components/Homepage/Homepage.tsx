@@ -25,6 +25,9 @@ export default function HomepageComponent() {
   
   const [isExpanded, setIsExpanded] = useState(false);
 
+  const handleMarket = () => {
+    router.push('/market')
+  }
   const handleGoals = () => {
     router.push('/myGoals');
   }
@@ -58,7 +61,8 @@ export default function HomepageComponent() {
             <p className="italic">My staking</p>
           </div>
 
-          <div className="flex flex-col w-24 h-24 aspect-square bg-white rounded-lg shadow items-center justify-center">
+          <div className="flex flex-col w-24 h-24 aspect-square bg-white rounded-lg shadow items-center justify-center"
+          onClick={handleMarket}>
             <Image src={marketIcon} className="w-12 h-12" alt="A stocks icon" />
             <p className="italic">Birdly Market</p>
           </div>
@@ -71,7 +75,8 @@ export default function HomepageComponent() {
             <Image src={goalsIcon} className="w-12 h-12" alt="A goals icon" />
             <p className="italic">Goals</p>
           </div>
-          <div className="flex flex-col w-24 h-24 aspect-square bg-white rounded-lg shadow items-center justify-center">
+          <div className="flex flex-col w-24 h-24 aspect-square bg-white rounded-lg shadow items-center justify-center"
+          onClick={handleMarket}>
             <Image src={myWallet} className="w-12 h-12" alt="A wallet icon" />
             <p className="italic">Wallets</p>
           </div>
