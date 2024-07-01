@@ -114,7 +114,7 @@ export default function LoginScreenComponent() {
             </div>
               
             <div className='flex justify-center mb-8'>
-             <p className=' birdlyLogo text-white text-center'> Create easy paylinks without worrying about addresses. 
+             <p className=' birdlyLogo text-white text-center p-4'> Create easy paylinks without worrying about addresses. 
               <br/>Easily manage your finance. </p>
             </div>
 
