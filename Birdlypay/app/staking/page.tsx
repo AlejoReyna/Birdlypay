@@ -7,6 +7,16 @@ import Dropdown from "@/components/Dropdown"
 import HomepageComponent from '@/components/Homepage/Homepage'; // Ruta al componente
 import BalanceComponent from "@/components/Balance/Balance";
 
+import { ConnectButton, ThirdwebProvider, TransactionButton, useSendTransaction } from "thirdweb/react";
+import { readContract, prepareContractCall } from "thirdweb";
+import { createThirdwebClient, getContract, resolveMethod, ThirdwebContract } from "thirdweb";
+
+
+export const client = createThirdwebClient({
+  clientId: process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID || "",
+});
+
+
 export default function Staking() {
   const router = useRouter(); 
 
@@ -26,12 +36,24 @@ export default function Staking() {
     <div className='container-fluid bg-dark pb-24 h-screen'>
       {/* First row */}
       <div className='flex flex-col'>
-          <div className="w-1/2">
+          
+          {/* <div className="w-1/2">
             <div className='btn-container flex justify-start m-4'>
               <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-[12px] shadow actor-font"
                 onClick={handleHome}> Back </button>
             </div>
-          </div>
+          </div> */}
+
+          <div className="w-full flex justify-between p-4">
+                    <div className='btn-container justify-start m-4'>
+                      <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-[12px] shadow actor-font"
+                        onClick={handleHome}> Back </button>                    
+                    </div>
+                    <div className='justify-end m-4'>
+                        <ConnectButton client={client} />
+                    </div>
+                </div>          
+
           <div className="w-1/2 ml-4">
             <h6 className='text-white text-3xl row-title'> Staking </h6>
           </div>
