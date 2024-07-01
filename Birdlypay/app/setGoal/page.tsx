@@ -35,34 +35,7 @@ export default function SetGoal() {
     router.push('/home');
   }
 
-  // const handleLink=  async() => {
-  //   if (!window.ethereum) {
-  //     alert("Please install MetaMask!");
-  //     return;
-  //   }
-  //   try {
-  //     // Request account access
-  //     await window.ethereum.request({ method: 'eth_requestAccounts' });
-  //     const provider = new ethers.providers.Web3Provider(window.ethereum);
-  //     const signer = provider.getSigner();
-  //     const address = await signer.getAddress();
-
-  //     // Create a unique identifier for this payment
-  //     const paymentId = ethers.utils.id(Date.now().toString() + address);
-
-  //     // Create the payment link
-  //     const link = `${window.location.origin}/paymentLink?title=${encodeURIComponent(paymentTitle)}&amount=${amount}&address=${address}`;
-
-  //     // Set the payment link in the state
-  //     setPaymentLink(link);
-
-  //     // Navigate to the paymentLink page with the generated link
-  //     router.push(link);
-  //   } catch (error) {
-  //     console.error("Error creating payment link:", error);
-  //     alert("Error creating payment link. Please try again.");
-  //   }
-  // };  
+ 
 
 
   const transaction = prepareContractCall({
@@ -114,7 +87,7 @@ export default function SetGoal() {
     router.push(link);
   }
   return (
-    <div className='flex flex-col bg-black h-max min-h-screen'>
+    <div className='flex flex-col bg-dark h-max min-h-screen'>
       {/* First row */}
       <div className='flex flex-col'>
 

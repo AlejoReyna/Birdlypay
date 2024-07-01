@@ -25,6 +25,10 @@ export default function HomepageComponent() {
   
   const [isExpanded, setIsExpanded] = useState(false);
 
+  const handleGoals = () => {
+    router.push('/setGoal');
+  }
+
   const handleStaking = () => {
     router.push('/staking');
   };
@@ -62,7 +66,8 @@ export default function HomepageComponent() {
         </div>
 
         <div className="flex justify-center gap-4 p-4">
-          <div className="flex flex-col w-24 h-24 aspect-square bg-white rounded-lg shadow items-center justify-center">
+          <div className="flex flex-col w-24 h-24 aspect-square bg-white rounded-lg shadow items-center justify-center
+           cursor-pointer hover:bg-gray-100" onClick={handleGoals}>
             <Image src={goalsIcon} className="w-12 h-12" alt="A goals icon" />
             <p className="italic">Goals</p>
           </div>
