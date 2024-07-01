@@ -1,5 +1,6 @@
 "use client"
 
+import './staking.css';
 import { useState, useEffect } from 'react';
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
@@ -37,7 +38,12 @@ export default function Staking() {
           </div>
       </div>
 
-      <div className="flex text-white"> <p className="m-8"> Your balance:  </p> <BalanceComponent onUsdBalanceChange={setUsdBalance}/>  </div>
+      <div className="flex text-white">
+         <p className="m-8"> Your balance:  </p>
+         <div className="balance-wrapper">
+          <BalanceComponent onUsdBalanceChange={setUsdBalance} />
+        </div> 
+      </div>
       <div className="flex justify-between items-center mx-8 mt-8 py-2 px-4 bg-white rounded-xl">
         <div className="flex items-center">
           <Image src={"/eth.png"} alt="Birdlypay" 
