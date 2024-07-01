@@ -6,7 +6,7 @@ import whiteLogo from './logo.png';
 import celphone from './cel.png';
 import { useRouter } from 'next/navigation';
 
-export default function landingPage() {
+export default function LandingPage() {
     const router = useRouter();
 
     const handleLogin = () => {
