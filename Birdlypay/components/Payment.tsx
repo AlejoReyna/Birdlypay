@@ -56,9 +56,11 @@ const PaymentComponent: React.FC = () => {
     const [paymentGuid, setPaymentGuid] = useState(uuidv4());
     const { mutate: sendTransaction, isPending } = useSendTransaction();
 
+   
 
     async function getPaymentDetails(guid: string) {
 
+        
         const data = await readContract({ 
             contract, 
             method: "function getPaymentDetails(string guid) view returns (uint256, string, string, string, address, bool)", 
@@ -104,8 +106,10 @@ const PaymentComponent: React.FC = () => {
                 <h1 className='text-4xl mb-4 text-center'>Thanks for using </h1>
                 <Image src={birdLogo} alt="Birdlypay logo" className='bird-logo'/>
                 
-                <p className='text-sm text-center text-xl m-4'>Did you know that creating a payment link in crypto is as easy as doing a few clicks? </p>
-                    <br/> <button className="bg-blue-600 text-white p-2 rounded flex items-center"> Create yours now! </button>
+                <p className='text-center text-xl m-4'>Did you know that creating a payment link in crypto is as easy as doing a few clicks? </p>
+                    <br/> <button className="bg-blue-600 text-white p-2 rounded flex items-center" onClick={handleHome}> Create yours now! </button>
+                    <br/>
+                    <p className='text-xs'> <button> Transaction failed? Try it again! </button> </p>
             </div>
         );
     }
@@ -118,8 +122,7 @@ const PaymentComponent: React.FC = () => {
             <div className='flex flex-col'>
                 <div className="w-full flex justify-between p-4">
                     <div className='btn-container justify-start m-4'>
-                        <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-[12px] shadow actor-font"
-                            onClick={handleHome}> Back </button>
+                        
                     </div>
                     <div className='justify-end m-4'>
                         <ConnectButton client={client} />
