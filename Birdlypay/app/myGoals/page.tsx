@@ -78,7 +78,7 @@ export default function MyGoals() {
         </div>
         {goals.length === 0 ? (
           <div className="flex justify-center items-center h-64">
-            <p className="text-white text-xl">You haven't set a goal yet</p>
+            <p className="text-white text-xl">You haven&apos;t set a goal yet</p>
           </div>
         ) : (
           <div className="mt-8">

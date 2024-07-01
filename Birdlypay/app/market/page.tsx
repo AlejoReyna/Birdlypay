@@ -6,7 +6,7 @@ import primeVideo from './prime.png';
 import x from './x.png';
 import { useRouter } from 'next/navigation';
 
-export default function market() {
+export default function Market() {
     const router = useRouter();
 
     const handleHome = () => {
