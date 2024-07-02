@@ -1,4 +1,4 @@
-# Birdlypay - An OnChainSummer buildathon project (by Base)
+# Birdlypay - An OnChainSummer buildathon project 
 ![Birdly Pay Banner](./BIRDLY_PAY_BANNER.jpg)
 
 Discover the most practical way to use crypto, organize, set goals, access incredible promotions and more benefits.
